@@ -1,10 +1,11 @@
-package App;
+package GoGame.View;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 
-import static App.Go.TILE_SIZE;
+import static GoGame.View.Go.TILE_SIZE;
+
 
 /**
  * Created by lukasz on 06.05.2017.

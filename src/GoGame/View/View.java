@@ -1,4 +1,4 @@
-package App;
+package GoGame.View;
 
 
 /**
