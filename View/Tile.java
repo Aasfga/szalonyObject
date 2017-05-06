@@ -1,3 +1,6 @@
+package App;
+
+import App.Go;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
