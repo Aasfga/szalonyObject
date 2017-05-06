@@ -1,4 +1,4 @@
-package App;
+package GoGame.View;
 
 /**
  * Created by lukasz on 06.05.2017.
