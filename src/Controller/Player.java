@@ -1,21 +1,22 @@
 package Controller;
 
 import Client.Input;
-import Controller.State.GameState;
 
 public class Player
 {
 	String name;
 	Input input;
+	Judge judge;
 
-	public Player(String n, Input i)
+	public Player(String n, Input i, Judge j)
 	{
 		name = n;
 		input = i;
+		judge = j;
 	}
 
 	GameState makeMove()
 	{
-		return
+		return judge.game.createState(input.getMove());
 	}
 }

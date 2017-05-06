@@ -1,6 +1,4 @@
-package Controller.State;
-
-import Controller.Player;
+package Controller;
 
 public class GameState
 {
@@ -9,8 +7,10 @@ public class GameState
 
 
 	GameState()
+	{}
+
+	public Player getPlayer()
 	{
-
+		return player;
 	}
-
 }
