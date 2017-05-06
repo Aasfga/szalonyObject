@@ -1,5 +1,3 @@
-package App;
-
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -13,22 +11,22 @@ import javafx.stage.Stage;
  * Created by Kruti on 05.05.2017.
  */
 public class Go extends Application{
-    public static int  TILE_SIZE = 50;
-    public static int  WIDTH = 10;
-    public static int  HEIGHT = 10;
-    public static char[][] array = new char[WIDTH][HEIGHT];
+    public static final int  TILE_SIZE = 50;
+    public static final int  WIDTH = 19;
+    public static final int  HEIGHT = 19;
 
+    private Tile[][] board = new Tile[WIDTH][HEIGHT];
 
     private Group tileGroup = new Group();
     private Group lineGroup = new Group();
-    private Group pieceGroup = new Group();
 
     //missing everything for pieces
+
+
 
     private Parent createContent() {
         Pane root = new Pane();
         root.setPrefSize(TILE_SIZE * WIDTH, TILE_SIZE * HEIGHT);
-        root.getChildren().addAll(tileGroup,lineGroup,pieceGroup);
 
         for(int y = 0; y < HEIGHT; y++) {
             MyLine linia = new MyLine(0,y,WIDTH-1,y);
@@ -40,27 +38,18 @@ public class Go extends Application{
             lineGroup.getChildren().add(linia);
         }
 
+
+
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 Tile tile = new Tile(x, y);
+                board[x][y] = tile;
+
                 tileGroup.getChildren().add(tile);
             }
         }
 
-        for (int y = 0; y < HEIGHT; y++) {
-            for (int x = 0; x < WIDTH; x++) {
-                if( array[y][x] == 1) {
-                    Piece piece = new Piece(PieceType.WHITE, x, y);
-                    pieceGroup.getChildren().add(piece);
-                }
-                if( array[y][x] == 2) {
-                    Piece piece = new Piece(PieceType.BLACK, x, y);
-                    pieceGroup.getChildren().add(piece);
-                }
-            }
-        }
-
-
+    root.getChildren().addAll(tileGroup,lineGroup);
         return root;
     }
 
@@ -71,7 +60,7 @@ public class Go extends Application{
         primaryStage.show();
     }
 
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
