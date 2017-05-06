@@ -1,6 +1,6 @@
-package Controller;
+package TurnBasedGameLogic.Controller;
 
-import Module.Game;
+import TurnBasedGameLogic.Module.Game;
 
 public class Judge
 {

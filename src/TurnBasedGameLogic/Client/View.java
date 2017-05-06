@@ -1,4 +1,4 @@
-package Client;
+package TurnBasedGameLogic.Client;
 
 
 public interface View
