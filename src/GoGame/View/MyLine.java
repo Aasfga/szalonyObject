@@ -1,12 +1,8 @@
 package App;
 
-import App.Go;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-/**
- * Created by Kruti on 06.05.2017.
- */
 public class MyLine extends Line{
     public MyLine ( int x, int y,int x2,int y2) {
         setStartX(x * Go.TILE_SIZE + Go.TILE_SIZE/2);
