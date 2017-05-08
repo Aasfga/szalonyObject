@@ -1,9 +1,11 @@
-package App;
+package GoGame.View;
 
+import GoGame.View.Go;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import static App.Go.createContent;
-import static App.View.array;
+
+import static GoGame.View.Go.createContent;
+import static GoGame.View.View.array;
 
 public class Tile extends Rectangle {
 

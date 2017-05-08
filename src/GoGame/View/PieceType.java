@@ -1,4 +1,4 @@
-package App;
+package GoGame.View;
 
 public enum PieceType {
     BLACK(1), WHITE(-1);

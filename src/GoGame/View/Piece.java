@@ -1,11 +1,12 @@
-package App;
+package GoGame.View;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
-import static App.Go.TILE_SIZE;
+
+import static GoGame.View.Go.TILE_SIZE;
 
 public class Piece extends StackPane{
 

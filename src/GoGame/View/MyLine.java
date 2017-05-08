@@ -1,4 +1,4 @@
-package App;
+package GoGame.View;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;

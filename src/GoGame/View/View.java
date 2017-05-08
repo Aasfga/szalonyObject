@@ -1,8 +1,9 @@
-package App;
+package GoGame.View;
 
 import javafx.application.Application;
-import static App.Go.HEIGHT;
-import static App.Go.WIDTH;
+
+import static GoGame.View.Go.HEIGHT;
+import static GoGame.View.Go.WIDTH;
 
 public class View {
 
