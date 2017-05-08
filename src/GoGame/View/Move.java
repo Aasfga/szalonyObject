@@ -46,7 +46,7 @@ public class Move implements Input
 			for(int j = 0; j < Go.WIDTH; j++)
 
 				if(x == j && i == y)
-					builder.append(color);
+					builder.append((char)color);
 				else
 					builder.append(View.array[i][j]);
 		}

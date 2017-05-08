@@ -7,6 +7,17 @@ public class Judge
 	Match match;
 	Game game;
 
+
+	public void setGame(Game g)
+	{
+		game = g;
+	}
+
+	public Game getGame()
+	{
+		return game;
+	}
+
 	public boolean isEnd()
 	{
 		return false;
@@ -30,6 +41,7 @@ public class Judge
 			newState = crrPlayer.makeMove();
 		}while(!game.isGood(crrState, newState));
 
+		crrState = newState;
 		crrState = game.makeActions(crrState);
 		match.setState(crrState);
 	}

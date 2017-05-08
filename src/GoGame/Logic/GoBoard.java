@@ -53,7 +53,7 @@ public class GoBoard implements Board
 		for(int i = 0; i < size; i++)
 		{
 			for(int j = 0; j < size; j++)
-				array[i][j] = '0';
+				array[i][j] = (char)0;
 
 		}
 	}
@@ -62,14 +62,14 @@ public class GoBoard implements Board
 	{
 		size = (int) Math.sqrt(data.length());
 		array = new char[size][size];
-		int j = 0;
-		for(int i = 0; i < data.length(); i++)
+
+
+		for(int i = 0; i < size; i++)
 		{
-			if(i != 0 && data.length() % i == 0)
+			for(int j = 0; j < size; j++)
 			{
-				j++;
+				array[i][j] = data.charAt(i*12 + j);
 			}
-			array[j][i % size] = (char) (data.charAt(i) - '0');
 		}
 	}
 

@@ -18,7 +18,7 @@ public class Tile extends Rectangle {
         setHeight(Go.TILE_SIZE);
         relocate(x * Go.TILE_SIZE, y * Go.TILE_SIZE);
         setFill(Color.valueOf("#ffad33"));
-        setOnMouseClicked(e -> setMove(x,y,flag));
+        setOnMouseClicked(e -> setMove(x,y, flag ? 2 : 1));
     }
 
     private void open(int a,int b)  {

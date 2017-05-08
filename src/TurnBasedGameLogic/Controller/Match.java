@@ -4,14 +4,14 @@ import TurnBasedGameLogic.Client.View;
 
 public abstract class Match implements Runnable
 {
-	Judge judge;
-	Player players[] = new Player[2];
-	View view;
+	protected Judge judge;
+	protected Player players[] = new Player[2];
+	protected View view;
 
 	public abstract GameState getState();
 	public abstract void setState(GameState state);
 
-	Match(Player f, Player s, View v)
+	public Match(Player f, Player s, View v)
 	{
 		players[0] = f;
 		players[1] = s;
@@ -20,9 +20,11 @@ public abstract class Match implements Runnable
 
 	public void run()
 	{
+
 		do
 		{
 			judge.nextRound();
+
 			view.setCurrentView(judge.game.getString(getState()));
 		}while(!judge.isEnd());
 	}

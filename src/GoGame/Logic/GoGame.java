@@ -65,7 +65,7 @@ public class GoGame implements Game
 	@Override
 	public Board getInitBoard()
 	{
-		return new GoBoard(17);
+		return new GoBoard(12);
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class GoGame implements Game
 	@Override
 	public GameState makeActions(GameState state)
 	{
-		return null;
+		return state;
 	}
 
 	@Override
