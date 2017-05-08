@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import static GoGame.View.Go.createContent;
+import static GoGame.View.Go.flag;
+import static GoGame.View.Move.setMove;
 import static GoGame.View.View.array;
 
 public class Tile extends Rectangle {
@@ -16,20 +18,13 @@ public class Tile extends Rectangle {
         setHeight(Go.TILE_SIZE);
         relocate(x * Go.TILE_SIZE, y * Go.TILE_SIZE);
         setFill(Color.valueOf("#ffad33"));
-        if(!flagmouse) {
-            flagmouse = true;
-            setOnMouseClicked(e -> open(x, y));
-        }
+        setOnMouseClicked(e -> setMove(x,y,flag));
     }
 
     private void open(int a,int b)  {
-        if (Go.flag) {
-            array[b][a] = 1;
-            Go.flag = false;
-        } else {
-            array[b][a] = 2;
-            Go.flag = true;
+        if( array[b][a] == 0) {
+
+            Go.scene.setRoot(createContent());
         }
-        Go.scene.setRoot(createContent());
     }
 }
