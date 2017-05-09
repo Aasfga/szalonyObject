@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import static GoGame.View.Go.createContent;
-import static GoGame.View.Go.flagOfColour;
+import static GoGame.View.Go.flag;
 import static GoGame.View.Move.setMove;
 import static GoGame.View.View.judgeDidHisJob;
 
@@ -19,10 +19,19 @@ public class Tile extends Rectangle {
     }
 
     private void thingsToDoWhenClicked(int x, int y) {
-        judgeDidHisJob = false;
-        setMove(x, y, flagOfColour ? 2 : 1);
-        while (!judgeDidHisJob) {}
+        setMove(x, y, flag ? 2 : 1);
+        while (!judgeDidHisJob) {
+            try
+            {
+                wait();
+            } catch(InterruptedException e)
+            {
+                break;
+            }
+        }
 
+        judgeDidHisJob = false;
         Go.scene.setRoot(createContent());
+        flag =  !flag;
     }
 }
