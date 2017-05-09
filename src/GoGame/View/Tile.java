@@ -1,7 +1,10 @@
 package GoGame.View;
 
+import javafx.scene.Cursor;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+import java.util.concurrent.TimeUnit;
 
 import static GoGame.View.Go.createContent;
 import static GoGame.View.Go.flag;
@@ -20,16 +23,15 @@ public class Tile extends Rectangle {
 
     private void thingsToDoWhenClicked(int x, int y) {
         setMove(x, y, flag ? 2 : 1);
+        Go.scene.setRoot(createContent());
         while (!judgeDidHisJob) {
             try
             {
-                wait();
+                TimeUnit.MILLISECONDS.sleep(100);
             } catch(InterruptedException e)
             {
-                break;
             }
         }
-
         judgeDidHisJob = false;
         Go.scene.setRoot(createContent());
         flag =  !flag;
