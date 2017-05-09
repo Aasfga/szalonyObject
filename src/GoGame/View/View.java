@@ -15,7 +15,7 @@ public class View  implements TurnBasedGameLogic.Client.View{
 
     static char[][] array = new char[20][20];
 
-    public static boolean judgeDidHisJob = true;
+    public static boolean judgeDidHisJob = false;
 
     public synchronized void setCurrentView(String viewToSet) {
         int index = 0;
@@ -26,7 +26,7 @@ public class View  implements TurnBasedGameLogic.Client.View{
             }
         }
         judgeDidHisJob = true;
-//        Go.scene.setRoot(createContent());
+        //        Go.scene.setRoot(createContent());
     }
 
     private static void startingView(int size) {

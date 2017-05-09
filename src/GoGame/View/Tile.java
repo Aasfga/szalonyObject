@@ -25,6 +25,7 @@ public class Tile extends Rectangle {
         setMove(x, y, flag ? 2 : 1);
         Go.scene.setRoot(createContent());
         while (!judgeDidHisJob) {
+            Go.scene.setRoot(createContent());
             try
             {
                 TimeUnit.MILLISECONDS.sleep(100);
