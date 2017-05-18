@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.LinkedList;
+
 import static GoGame.View.View.array;
 
 public class Go extends Application{
@@ -19,11 +21,19 @@ public class Go extends Application{
     private static  Group tileGroup = new Group();
     private static Group lineGroup = new Group();
     private static Group pieceGroup = new Group();
+    private static Group backlight = new Group();
+
 
     public static Parent createContent() {
+
+        tileGroup.getChildren().clear();
+        lineGroup.getChildren().clear();
+        pieceGroup.getChildren().clear();
+        backlight.getChildren().clear();
+
         Pane root = new Pane();
         root.setPrefSize(TILE_SIZE * WIDTH, TILE_SIZE * HEIGHT);
-        root.getChildren().addAll(tileGroup,lineGroup,pieceGroup);
+        root.getChildren().addAll(tileGroup,lineGroup,pieceGroup,backlight);
 
         for(int y = 0; y < HEIGHT; y++) {
             MyLine linia = new MyLine(0,y,WIDTH-1,y);
@@ -51,6 +61,10 @@ public class Go extends Application{
                 if( array[y][x] == 2) {
                     Piece piece = new Piece(PieceType.BLACK, x, y);
                     pieceGroup.getChildren().add(piece);
+                }
+                if( array[y][x] == 3) {
+                    Light light = new Light(x,y);
+                    backlight.getChildren().add(light);
                 }
             }
         }

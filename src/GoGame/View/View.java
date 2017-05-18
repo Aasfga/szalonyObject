@@ -14,6 +14,8 @@ import static GoGame.View.Go.*;
 public class View  implements TurnBasedGameLogic.Client.View{
 
     static char[][] array = new char[20][20];
+    static int lastx = 19;
+    static int lasty = 19;
 
     public static boolean judgeDidHisJob = false;
 
