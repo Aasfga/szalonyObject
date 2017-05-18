@@ -43,7 +43,10 @@ public class Tile extends Rectangle {
     }
 
     private void thingsToDoWhenClicked2(int x, int y) {
-        if( x != lastx && y != lasty && array[y][x] == 0) {
+
+        int cos  = 2 ;
+
+        if( ( x != lastx || y != lasty ) && array[y][x] == 0) {
             array[lasty][lastx] = 0;
             array[y][x] = 3;
             lasty = y;
