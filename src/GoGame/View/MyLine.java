@@ -72,13 +72,18 @@ public class MyLine extends Line{
     }
 
     private void thingsToDoWhenClicked2(int x, int y) {
-        int cos  = 2 ;
 
         if( ( x != lastx || y != lasty ) && array[y][x] == 0) {
             array[lasty][lastx] = 0;
             array[y][x] = 3;
             lasty = y;
             lastx = x;
+            Go.scene.setRoot(createContent());
+        }
+        else if( ( x != lastx || y != lasty ) && array[y][x] != 0) {
+            array[lasty][lastx] = 0;
+            lasty = 19;
+            lastx = 19;
             Go.scene.setRoot(createContent());
         }
     }
