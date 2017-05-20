@@ -35,15 +35,37 @@ public class Go extends Application{
         root.setPrefSize(TILE_SIZE * WIDTH, TILE_SIZE * HEIGHT);
         root.getChildren().addAll(tileGroup,lineGroup,pieceGroup,backlight);
 
-        for(int y = 0; y < HEIGHT; y++) {
-            MyLine linia = new MyLine(0,y,WIDTH-1,y);
-            lineGroup.getChildren().add(linia);
+          // Row lines
+        for(int x = 0; x < WIDTH; x++) {
+            for(int y = 0; y < HEIGHT; y++) {
+                MyLine linia = null;
+                if( x == 0)
+                    linia = new MyLine(x, y,true, false, true);
+                if( x == WIDTH - 1 )
+                    linia = new MyLine(x, y,true, true, false);
+                if( x > 0 && x < WIDTH -1)
+                    linia = new MyLine(x, y,true, true, true);
+                lineGroup.getChildren().add(linia);
+            }
+        }
+        //Column lines
+        for(int x = 0; x < WIDTH; x++) {
+            for(int y = 0; y < HEIGHT; y++) {
+                MyLine linia = null;
+                if( y == 0)
+                    linia = new MyLine(x, y,false, false, true);
+                else
+                if( y == HEIGHT - 1)
+                    linia = new MyLine(x, y, false, true, false);
+                else
+                    linia = new MyLine(x, y, false, true, true);
+
+
+                lineGroup.getChildren().add(linia);
+            }
         }
 
-        for(int x = 0; x < WIDTH; x++) {
-            MyLine linia = new MyLine(x,0,x,HEIGHT - 1);
-            lineGroup.getChildren().add(linia);
-        }
+
 
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
