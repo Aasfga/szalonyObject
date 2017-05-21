@@ -6,17 +6,14 @@ import TurnBasedGameLogic.Controller.Judge;
 import TurnBasedGameLogic.Controller.Match;
 import TurnBasedGameLogic.Controller.Player;
 import javafx.application.Application;
-
 import static GoGame.View.Go.*;
-
-
 
 public class View  implements TurnBasedGameLogic.Client.View{
 
-    static char[][] array = new char[20][20];
-    static int lastx = 19;
-    static int lasty = 19;
-
+    static final int size = 21;
+    static char[][] array = new char[size][size];
+    static int lastx = size-1;
+    static int lasty = size-1;
     public static boolean judgeDidHisJob = false;
 
     public synchronized void setCurrentView(String viewToSet) {
@@ -28,7 +25,6 @@ public class View  implements TurnBasedGameLogic.Client.View{
             }
         }
         judgeDidHisJob = true;
-        //        Go.scene.setRoot(createContent());
     }
 
     private static void startingView(int size) {

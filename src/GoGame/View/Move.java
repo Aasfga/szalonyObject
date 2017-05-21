@@ -1,16 +1,8 @@
 package GoGame.View;
 
 import TurnBasedGameLogic.Client.Input;
-
 import java.util.concurrent.TimeUnit;
 
-import static GoGame.View.Go.HEIGHT;
-import static GoGame.View.Go.WIDTH;
-import static GoGame.View.View.array;
-
-/**
- * Created by lukasz on 08.05.2017.
- */
 public class Move implements Input
 {
 	static String content = null;

@@ -1,11 +1,8 @@
 package GoGame.View;
 
-import javafx.scene.Cursor;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
 import java.util.concurrent.TimeUnit;
-
 import static GoGame.View.Go.createContent;
 import static GoGame.View.Go.flag;
 import static GoGame.View.Move.setMove;
@@ -19,13 +16,13 @@ public class Tile extends Rectangle {
         relocate(x * Go.TILE_SIZE, y * Go.TILE_SIZE);
         setFill(Color.valueOf("#ffad33"));
         setOnMouseClicked(e -> thingsToDoWhenClicked(x, y)); // Must check what if doubleclicked
-        setOnMouseEntered(e->thingsToDoWhenClicked2(x,y));
+        setOnMouseEntered(e->thingsToDoWhenEntered(x,y));
     }
 
-    private void thingsToDoWhenClicked(int x, int y) {
+    static void thingsToDoWhenClicked(int x, int y) {
         array[lasty][lastx] = 0;
-        lastx = 19;
-        lasty = 19;
+        lastx = size-1;
+        lasty = size-1;
         setMove(x, y, flag ? 2 : 1);
         Go.scene.setRoot(createContent());
         while (!judgeDidHisJob) {
@@ -42,9 +39,7 @@ public class Tile extends Rectangle {
         flag =  !flag;
     }
 
-    private void thingsToDoWhenClicked2(int x, int y) {
-
-        int cos  = 2 ;
+    static void thingsToDoWhenEntered(int x, int y) {
 
         if( ( x != lastx || y != lasty ) && array[y][x] == 0) {
             array[lasty][lastx] = 0;
@@ -55,8 +50,8 @@ public class Tile extends Rectangle {
         }
         else if( ( x != lastx || y != lasty ) && array[y][x] != 0) {
             array[lasty][lastx] = 0;
-            lasty = 19;
-            lastx = 19;
+            lasty = size-1;
+            lastx = size-1;
             Go.scene.setRoot(createContent());
         }
     }
