@@ -16,13 +16,14 @@ public class Go extends Application{
     static int  TILE_SIZE = 50;
     static int  WIDTH = 20;
     static int  HEIGHT = 20;
+    static int PANEL_SIZE = 200;
     static Scene scene;
     static boolean flag = false; // false - WHITE, true - BLACK
     private static  Group tileGroup = new Group();
     private static Group lineGroup = new Group();
     private static Group pieceGroup = new Group();
     private static Group backlight = new Group();
-
+	private static Group scoreGroup = new Group();
 
     public static Parent createContent() {
 
@@ -30,10 +31,13 @@ public class Go extends Application{
         lineGroup.getChildren().clear();
         pieceGroup.getChildren().clear();
         backlight.getChildren().clear();
-
+		scoreGroup.getChildren().clear();
+		 
         Pane root = new Pane();
-        root.setPrefSize(TILE_SIZE * WIDTH, TILE_SIZE * HEIGHT);
-        root.getChildren().addAll(tileGroup,lineGroup,pieceGroup,backlight);
+        RightPanel panel = new RightPanel("cos","cos");//,score1,score2);
+        root.getChildren().add(panel);
+        root.setPrefSize(TILE_SIZE * WIDTH + PANEL_SIZE, TILE_SIZE * HEIGHT);
+        root.getChildren().addAll(tileGroup,lineGroup,pieceGroup,backlight,scoreGroup);
 
           // Row lines
         for(int x = 0; x < WIDTH; x++) {
@@ -90,6 +94,10 @@ public class Go extends Application{
                 }
             }
         }
+        
+        Score score1 = new Score(true,5);
+        Score score2 = new Score(false,5);
+        scoreGroup.getChildren().addAll(score1,score2);
         return root;
     }
 
