@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import static Go.IO.WindowViewInput.Go.createContent;
 import static Go.IO.WindowViewInput.Go.flag;
 import static Go.IO.WindowViewInput.Move.setMove;
-import static Go.IO.WindowViewInput.View.*;
+import static Go.IO.WindowViewInput.WindowView.*;
 
 public class Tile extends Rectangle {
 
@@ -23,7 +23,7 @@ public class Tile extends Rectangle {
         array[lasty][lastx] = 0;
         lastx = size-1;
         lasty = size-1;
-        setMove(x, y, flag ? 2 : 1);
+        setMove(x, y);
         Go.scene.setRoot(createContent());
         while (!judgeDidHisJob) {
             Go.scene.setRoot(createContent());

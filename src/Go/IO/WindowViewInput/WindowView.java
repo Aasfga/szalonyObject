@@ -1,37 +1,52 @@
 package Go.IO.WindowViewInput;
 
+import Go.IO.View;
 import javafx.application.Application;
+import Go.State;
 
 import static Go.IO.WindowViewInput.Go.*;
 
-public class View
+
+public class WindowView implements View
 {
 
-	static final int size = 21;
+	static final int size = 9;
 	static char[][] array = new char[size][size];
 	static int lastx = size - 1;
 	static int lasty = size - 1;
 	public static boolean judgeDidHisJob = false;
 
-	public synchronized void setCurrentView(String viewToSet)
-	{
-		int index = 0;
-		for(int y = 0; y < HEIGHT; y++)
-		{
-			for(int x = 0; x < WIDTH; x++)
-			{
-				array[y][x] = viewToSet.charAt(index);
-				index++;
-			}
-		}
-		judgeDidHisJob = true;
-	}
+//	public synchronized void setCurrentViewa(State state)
+//	{
+//		int index = 0;
+//		for(int y = 0; y < HEIGHT; y++)
+//		{
+//			for(int x = 0; x < WIDTH; x++)
+//			{
+//				array[y][x] = viewToSet.charAt(index);
+//				index++;
+//			}
+//		}
+//		judgeDidHisJob = true;
+//	}
 
-	private static void startingView(int size)
+	public static void startingView(int size)
 	{
 		HEIGHT = size;
 		WIDTH = size;
 		new Thread(() -> Application.launch(Go.class)).start();
+	}
+
+	@Override
+	public synchronized void setCurrentView(State state)
+	{
+		int intArray[][] = state.getBoard().toArray();
+
+		for(int i = 0; i < size; i++)
+		{
+			for(int j = 0; j < size; j++)
+				array[i][j] = (char)(intArray[i][j] + '0');
+		}
 	}
 
 //    public static void main(String[] args) throws InterruptedException {
