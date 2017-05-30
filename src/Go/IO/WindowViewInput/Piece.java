@@ -1,10 +1,10 @@
-package GoGame.View;
+package Go.IO.WindowViewInput;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
-import static GoGame.View.Go.TILE_SIZE;
-import static GoGame.View.Tile.thingsToDoWhenEntered;
+import static Go.IO.WindowViewInput.Go.TILE_SIZE;
+import static Go.IO.WindowViewInput.Tile.thingsToDoWhenEntered;
 
 public class Piece extends StackPane{
 

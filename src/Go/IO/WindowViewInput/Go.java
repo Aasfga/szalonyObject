@@ -1,4 +1,4 @@
-package GoGame.View;
+package Go.IO.WindowViewInput;
 
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import static GoGame.View.View.array;
+import static Go.IO.WindowViewInput.View.array;
 
 public class Go extends Application{
 

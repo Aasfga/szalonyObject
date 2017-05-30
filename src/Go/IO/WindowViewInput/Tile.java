@@ -1,12 +1,12 @@
-package GoGame.View;
+package Go.IO.WindowViewInput;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.concurrent.TimeUnit;
-import static GoGame.View.Go.createContent;
-import static GoGame.View.Go.flag;
-import static GoGame.View.Move.setMove;
-import static GoGame.View.View.*;
+import static Go.IO.WindowViewInput.Go.createContent;
+import static Go.IO.WindowViewInput.Go.flag;
+import static Go.IO.WindowViewInput.Move.setMove;
+import static Go.IO.WindowViewInput.View.*;
 
 public class Tile extends Rectangle {
 

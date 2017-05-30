@@ -1,9 +1,9 @@
-package GoGame.View;
+package Go.IO.WindowViewInput;
 
-import TurnBasedGameLogic.Client.Input;
+import Go.IO.Input;
 import java.util.concurrent.TimeUnit;
 
-public class Move implements Input
+public class Move
 {
 	static String content = null;
 	static boolean getMove = false;

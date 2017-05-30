@@ -1,8 +1,8 @@
-package GoGame.View;
+package Go.IO.WindowViewInput;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Ellipse;
-import static GoGame.View.Tile.thingsToDoWhenClicked;
+import static Go.IO.WindowViewInput.Tile.thingsToDoWhenClicked;
 import static javafx.scene.paint.Color.GREEN;
 
 public class Light extends StackPane {

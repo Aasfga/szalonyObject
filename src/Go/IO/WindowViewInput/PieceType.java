@@ -1,4 +1,4 @@
-package GoGame.View;
+package Go.IO.WindowViewInput;
 
 public enum PieceType {
     BLACK(1), WHITE(-1);

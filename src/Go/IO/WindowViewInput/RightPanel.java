@@ -1,10 +1,10 @@
-package GoGame.View;
+package Go.IO.WindowViewInput;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import static GoGame.View.Go.*;
+import static Go.IO.WindowViewInput.Go.*;
 
 public class RightPanel extends StackPane {
 

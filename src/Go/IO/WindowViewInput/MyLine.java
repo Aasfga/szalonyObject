@@ -1,9 +1,9 @@
-package GoGame.View;
+package Go.IO.WindowViewInput;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import static GoGame.View.Tile.thingsToDoWhenClicked;
-import static GoGame.View.Tile.thingsToDoWhenEntered;
+import static Go.IO.WindowViewInput.Tile.thingsToDoWhenClicked;
+import static Go.IO.WindowViewInput.Tile.thingsToDoWhenEntered;
 
 public class MyLine extends Line{
     public MyLine ( int x, int y, boolean row, boolean part1, boolean part2){
