@@ -14,7 +14,7 @@ public interface Match
 	void startGame();
 
 
-	class LocalMatch implements Match
+	class LocalMatch implements Match, Runnable
 	{
 		Player players[] = new Player[2];
 		View view;
@@ -53,18 +53,24 @@ public interface Match
 			return move;
 		}
 
+
 		@Override
 		public void startGame()
 		{
+			new Thread(this).start();
+		}
+
+		@Override
+		public void run()
+		{
 			do
 			{
-				view.setCurrentView(state);
 				Player player = getCurrentPlayer(state.player);
 				State.Move move = getCorrectMove(player);
 				state = game.addMove(state, move);
 				state = game.postMoveActions(state, move);
+				view.setCurrentView(state);
 			}while(!game.isEnd(state));
-
 		}
 	}
 }

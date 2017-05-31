@@ -10,11 +10,11 @@ import static Go.IO.WindowViewInput.Go.*;
 public class WindowView implements View
 {
 
-	static final int size = 9;
+	static final int size = 11;
 	static char[][] array = new char[size][size];
 	static int lastx = size - 1;
 	static int lasty = size - 1;
-	public static boolean judgeDidHisJob = false;
+	public static volatile boolean judgeDidHisJob = false;
 
 //	public synchronized void setCurrentViewa(State state)
 //	{
@@ -40,6 +40,7 @@ public class WindowView implements View
 	@Override
 	public synchronized void setCurrentView(State state)
 	{
+		System.out.println("Tu jestem");
 		int intArray[][] = state.getBoard().toArray();
 
 		for(int i = 0; i < size; i++)
@@ -47,6 +48,8 @@ public class WindowView implements View
 			for(int j = 0; j < size; j++)
 				array[i][j] = (char)(intArray[i][j] + '0');
 		}
+		judgeDidHisJob = true;
+		System.out.println("Tu jestem 2");
 	}
 
 //    public static void main(String[] args) throws InterruptedException {

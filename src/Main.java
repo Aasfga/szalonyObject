@@ -7,6 +7,10 @@ import Go.Logic.Game;
 import Go.Match;
 import Go.Player;
 
+import java.sql.Time;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
 public class Main
 {
 	public static void maina(String[] args)
@@ -22,11 +26,31 @@ public class Main
 	{
 		Player f = new Player("Dominik", new Move());
 		Player s = new Player("kinimoD", new Move());
-		Board board = Game.get().getInitBoard(9);
+		Board board = Game.get().getInitBoard(11);
 		WindowView view = new WindowView();
-		WindowView.startingView(9);
+		WindowView.startingView(11);
 		Match match = new Match.LocalMatch(view, board, f, s);
 		match.startGame();
+
+
+//		Scanner scanner = new Scanner(System.in);
+//		while(true)
+//		{
+//			if(scanner.nextInt() == 0)
+//			{
+//
+//				try
+//				{
+//					TimeUnit.SECONDS.sleep(1);
+//				} catch(InterruptedException e)
+//				{
+//					e.printStackTrace();
+//				}
+//
+//			}
+//			else
+//				break;
+//		}
 	}
 	//        Judge judge = new Judge();
 //        judge.setGame(GoGame.getGoGame());

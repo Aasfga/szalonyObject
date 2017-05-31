@@ -19,7 +19,7 @@ public class Tile extends Rectangle {
         setOnMouseEntered(e->thingsToDoWhenEntered(x,y));
     }
 
-    static void thingsToDoWhenClicked(int x, int y) {
+    static synchronized void thingsToDoWhenClicked(int x, int y) {
         array[lasty][lastx] = 0;
         lastx = size-1;
         lasty = size-1;
