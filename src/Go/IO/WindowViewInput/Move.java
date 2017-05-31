@@ -28,13 +28,11 @@ public class Move implements Input
 		latch = new CountDownLatch(1);
 		State.Move ans = content;
 		content = null;
-		judgeDidHisJob = true;
 		return ans;
 	}
 
 	static synchronized void setMove(int x, int y)
 	{
-		System.out.println("abcd");
 		if(!getMove)
 			return;
 

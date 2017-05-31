@@ -23,10 +23,9 @@ public class Tile extends Rectangle {
         array[lasty][lastx] = 0;
         lastx = size-1;
         lasty = size-1;
+        array[y][x] = 0;
         setMove(x, y);
-        Go.scene.setRoot(createContent());
         while (!judgeDidHisJob) {
-            Go.scene.setRoot(createContent());
             try
             {
                 TimeUnit.MILLISECONDS.sleep(100);

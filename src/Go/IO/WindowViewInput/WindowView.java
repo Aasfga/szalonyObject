@@ -40,16 +40,18 @@ public class WindowView implements View
 	@Override
 	public synchronized void setCurrentView(State state)
 	{
-		System.out.println("Tu jestem");
 		int intArray[][] = state.getBoard().toArray();
 
 		for(int i = 0; i < size; i++)
 		{
 			for(int j = 0; j < size; j++)
-				array[i][j] = (char)(intArray[i][j] + '0');
+			{
+				if (  intArray[i][j] == 0 ) array[i][j] = 0;
+				else if ( intArray[i][j] == 1) array[i][j] = 1;
+				else array[i][j] = 2;
+			}
 		}
 		judgeDidHisJob = true;
-		System.out.println("Tu jestem 2");
 	}
 
 //    public static void main(String[] args) throws InterruptedException {
