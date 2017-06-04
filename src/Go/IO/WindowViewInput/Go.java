@@ -21,14 +21,18 @@ public class Go extends Application{
     private static Group pieceGroup = new Group();
     private static Group backlight = new Group();
     private static Group scoreGroup = new Group();
+    private static boolean start = false;
 
     public static Parent createContent() {
 
-        tileGroup.getChildren().clear();
+        if (!start){
+            tileGroup.getChildren().clear();
+        }
         lineGroup.getChildren().clear();
         pieceGroup.getChildren().clear();
         backlight.getChildren().clear();
         scoreGroup.getChildren().clear();
+
 
         Pane root = new Pane();
         RightPanel panel = new RightPanel("cos","cos");//,score1,score2);
@@ -68,10 +72,12 @@ public class Go extends Application{
 
 
 
-        for (int y = 0; y < HEIGHT; y++) {
-            for (int x = 0; x < WIDTH; x++) {
-                Tile tile = new Tile(x, y);
-                tileGroup.getChildren().add(tile);
+        if(!start){
+            for (int y = 0; y < HEIGHT; y++) {
+                for (int x = 0; x < WIDTH; x++) {
+                    Tile tile = new Tile(x, y);
+                    tileGroup.getChildren().add(tile);
+                }
             }
         }
 
@@ -95,6 +101,7 @@ public class Go extends Application{
         Score score1 = new Score(true,5);
         Score score2 = new Score(false,5);
         scoreGroup.getChildren().addAll(score1,score2);
+        start = true;
         return root;
     }
 
