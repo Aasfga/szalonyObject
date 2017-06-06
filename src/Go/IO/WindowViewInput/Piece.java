@@ -12,7 +12,7 @@ public class Piece extends StackPane{
 
         relocate(x*TILE_SIZE, y*TILE_SIZE);
         Ellipse bg = new Ellipse(TILE_SIZE * 0.3125, TILE_SIZE * 0.26);
-        bg.setFill(type == PieceType.BLACK ? Color.BLACK : Color.WHITE);
+        bg.setFill(type == PieceType.BLACK ? Color.RED : Color.WHITE);
         bg.setTranslateX((TILE_SIZE - TILE_SIZE * 0.3125 * 2) / 2);
         bg.setTranslateY((TILE_SIZE - TILE_SIZE * 0.26 * 2) / 2 + TILE_SIZE * 0.07);
         getChildren().addAll(bg);
