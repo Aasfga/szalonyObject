@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main
 {
-	public static void maina(String[] args)
+	public static void main(String[] args)
 	{
 		Player f = new Player("Dominik", new ConsoleInput());
 		Player s = new Player("kinimoD", new ConsoleInput());
@@ -22,7 +22,7 @@ public class Main
 		match.startGame();
 	}
 
-	public static void main(String[] args)
+	public static void maina(String[] args)
 	{
 		Player f = new Player("Dominik", new Move());
 		Player s = new Player("kinimoD", new Move());

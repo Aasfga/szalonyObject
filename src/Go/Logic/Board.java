@@ -9,7 +9,6 @@ public class Board
 {
 	final int size;
 	Stone array[][];
-	ArrayList<Game.StoneGroup> groups = new ArrayList<>();
 	Board(int s)
 	{
 		size = s;
@@ -17,7 +16,7 @@ public class Board
 		for(int i = 0; i < size; i++)
 		{
 			for(int j = 0; j < size; j++)
-				array[i][j] = new Stone(i, j);
+				array[i][j] = new Stone();
 		}
 	}
 
@@ -35,37 +34,12 @@ public class Board
 
 	public static class Stone
 	{
-		int x;
-		int y;
-		StoneColour colour;
-		Game.StoneGroup group = new Game.StoneGroup(this);
+		StoneColour colour = StoneColour.Empty;
+		boolean visited = false;
 
-
-		Stone(int y, int x)
+		public void setColour(StoneColour c)
 		{
-			this.x = x;
-			this.y = y;
-			colour = StoneColour.Empty;
-		}
-
-		public Stone(int y, int x, StoneColour c)
-		{
-			this(y, x);
 			colour = c;
-		}
-
-		boolean hasFreeSpace(Board board)
-		{
-			if(y - 1 >= 0 && board.array[y - 1][x].colour.equals(StoneColour.Empty))
-				return true;
-			if(x + 1 < board.size && board.array[y][x + 1].colour.equals(StoneColour.Empty))
-				return true;
-			if(y + 1 < board.size && board.array[y+1][x].colour.equals(StoneColour.Empty))
-				return true;
-			if(x - 1 >= 0 && board.array[y][x - 1].colour.equals(StoneColour.Empty))
-				return true;
-
-			return false;
 		}
 	}
 }

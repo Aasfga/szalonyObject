@@ -4,15 +4,13 @@ import Go.Common.StoneColour;
 import Go.State;
 import Go.Logic.Board.*;
 
-import java.security.acl.Group;
-import java.util.ArrayList;
-
 public class Game
 {
 	static Game game;
 
 	private Game()
-	{}
+	{
+	}
 
 	public static Game get()
 	{
@@ -32,6 +30,65 @@ public class Game
 		return false;
 	}
 
+	private boolean insideBoard(int y, int x, Board board)
+	{
+		return x >= 0 && y < board.size;
+	}
+
+	private boolean isSurrounded(int y, int x, Board board, StoneColour colour)
+	{
+		if(!insideBoard(y, x, board))
+			return true;
+		if(board.array[y][x].colour == StoneColour.Empty)
+			return false;
+		if(board.array[y][x].colour != colour)
+			return true;
+		if(board.array[y][x].visited)
+			return true;
+
+		board.array[y][x].visited = true;
+		if(!isSurrounded(y, x - 1, board, colour))
+		{
+			board.array[y][x].visited = false;
+			return false;
+		}
+		if(!isSurrounded(y, x + 1, board, colour))
+		{
+			board.array[y][x].visited = false;
+			return false;
+
+		}
+		if(!isSurrounded(y - 1, x, board, colour))
+		{
+			board.array[y][x].visited = false;
+			return false;
+
+		}
+		if(!isSurrounded(y + 1, x, board, colour))
+		{
+			board.array[y][x].visited = false;
+			return false;
+		}
+
+		return true;
+	}
+
+
+	private void kill(int y, int x, Board board, StoneColour colour)
+	{
+		if(!insideBoard(y, x, board))
+			return;
+		if(board.array[y][x].colour != colour)
+			return;
+
+		board.array[y][x].colour = StoneColour.Empty;
+
+		kill(y - 1, x, board, colour);
+		kill(y + 1, x, board, colour);
+		kill(y, x - 1, board, colour);
+		kill(y, x + 1, board, colour);
+	}
+
 	public boolean isCorrect(State state, State.Move move)
 	{
 		int x = move.x;
@@ -45,111 +102,46 @@ public class Game
 		return board.array[y][x].colour.equals(StoneColour.Empty);
 	}
 
+	private boolean enemyColour(StoneColour first, StoneColour second)
+	{
+		return second != StoneColour.Empty && second != first;
+	}
+
 	public State postMoveActions(State state, State.Move move)
 	{
-		Board board = state.getBoard();
-		int x = move.x;
 		int y = move.y;
-		Stone stone = board.array[y][x];
+		int x = move.x;
+		Board board = state.getBoard();
 
-		if(y - 1 >= 0 && board.array[y - 1][x].colour.equals(stone.colour))
-			board.array[y - 1][x].group.concatGroups(stone.group);
-		if(x + 1 < board.size && board.array[y][x + 1].colour.equals(stone.colour))
-			board.array[y][x + 1].group.concatGroups(stone.group);
-		if(y + 1 < board.size && board.array[y+1][x].colour.equals(stone.colour))
-			board.array[y + 1][x].group.concatGroups(stone.group);
-		if(x - 1 >= 0 && board.array[y][x - 1].colour.equals(stone.colour))
-			board.array[y][x - 1].group.concatGroups(stone.group);
+		y = move.y - 1;
+		x = move.x;
+		StoneColour colour = board.array[y][x].colour;
+		if(isSurrounded(y, x, board, colour))
+			kill(y, x, board, colour);
+		y = move.y + 1;
+		x = move.x;
+		colour = board.array[y][x].colour;
+		if(isSurrounded(y, x, board, colour))
+			kill(y, x, board, colour);
+		y = move.y;
+		x = move.x - 1;
+		colour = board.array[y][x].colour;
+		if(isSurrounded(y, x, board, colour))
+			kill(y, x, board, colour);
+		y = move.y;
+		x = move.x + 1;
+		colour = board.array[y][x].colour;
+		if(isSurrounded(y, x, board, colour))
+			kill(y, x, board, colour);
 
-		if(y - 1 >= 0 && !board.array[y - 1][x].colour.equals(stone.colour))
-			board.array[y - 1][x].group.tryToKill(board);
-		if(x + 1 < board.size && !board.array[y][x + 1].colour.equals(stone.colour))
-			board.array[y][x + 1].group.tryToKill(board);
-		if(y + 1 < board.size && !board.array[y+1][x].colour.equals(stone.colour))
-			board.array[y + 1][x].group.tryToKill(board);
-		if(x - 1 >= 0 && !board.array[y][x - 1].colour.equals(stone.colour))
-			board.array[y][x - 1].group.tryToKill(board);
-
-
-		stone.group.tryToKill(board);
-		ArrayList<StoneGroup> newGroups = new ArrayList<>();
-		for(StoneGroup g : board.groups)
-		{
-			if(!g.stones.isEmpty())
-				newGroups.add(g);
-		}
-		board.groups = newGroups;
-
-
-		return new State(move.player, board);
+		return new State(state.getPlayer(), board);
 	}
 
 	public State addMove(State state, State.Move move)
 	{
 		Board board = state.getBoard();
-		board.array[move.y][move.x] = new Stone(move.y, move.x, move.player.getColour());
+		board.array[move.y][move.x].setColour(move.player.getColour());
 		return new State(move.player, board);
 	}
 
-	public static class StoneGroup
-	{
-		ArrayList<Stone> stones = new ArrayList<>();
-
-		StoneGroup(Stone s)
-		{
-			stones.add(s);
-		}
-
-		StoneGroup()
-		{}
-
-		boolean isDead(Board board)
-		{
-			for(Stone s : stones)
-			{
-				if(s.hasFreeSpace(board))
-					return false;
-			}
-
-			return true;
-		}
-
-		void kill()
-		{
-			for(Stone s : stones)
-			{
-				s.colour = StoneColour.Empty;
-				s.group = null;
-			}
-
-			stones.clear();
-		}
-
-
-		void concatGroups(StoneGroup group)
-		{
-			StoneGroup newGroup = new StoneGroup();
-
-			for(Stone x : stones)
-			{
-				x.group = newGroup;
-				newGroup.stones.add(x);
-			}
-
-			for(Stone y : group.stones)
-			{
-				y.group = newGroup;
-				newGroup.stones.add(y);
-			}
-
-			stones.clear();
-			group.stones.clear();
-		}
-
-		public void tryToKill(Board board)
-		{
-			if(isDead(board))
-				kill();
-		}
-	}
 }
