@@ -1,7 +1,11 @@
 package Go.IO.WindowViewInput;
 
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 import static Go.IO.WindowViewInput.Go.createContent;
 import static Go.IO.WindowViewInput.Go.flag;
@@ -14,7 +18,10 @@ public class Tile extends Rectangle {
         setWidth(Go.TILE_SIZE);
         setHeight(Go.TILE_SIZE);
         relocate(x * Go.TILE_SIZE, y * Go.TILE_SIZE);
-        setFill(Color.valueOf("#ffad33"));
+        File file = new File("img.png");
+        Image img = new Image(file.toURI().toString());
+        ImagePattern image = new ImagePattern(img);
+        setFill(image);
         setOnMouseClicked(e -> thingsToDoWhenClicked(x, y)); // Must check what if doubleclicked
         setOnMouseEntered(e->thingsToDoWhenEntered(x,y));
     }
