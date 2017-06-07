@@ -1,7 +1,6 @@
 package Go;
 
 import Go.Logic.Board;
-import Go.Logic.Game.StoneGroup;
 import Go.Player;
 
 import java.util.ArrayList;
