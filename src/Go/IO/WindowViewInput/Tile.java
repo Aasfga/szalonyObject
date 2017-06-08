@@ -1,21 +1,21 @@
 package Go.IO.WindowViewInput;
 
-import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-import java.io.File;
-import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
-import static Go.IO.WindowViewInput.Go.createContent;
+
 import static Go.IO.WindowViewInput.Go.flag;
 import static Go.IO.WindowViewInput.Move.setMove;
 import static Go.IO.WindowViewInput.WindowView.*;
 
 public class Tile extends Rectangle {
 
-    public Tile(int x, int y) {
+    public static Go paneThatImOn;
+
+    public Tile(int x, int y, Go pane) {
+        paneThatImOn = pane;
         setWidth(Go.TILE_SIZE);
         setHeight(Go.TILE_SIZE);
         relocate(x * Go.TILE_SIZE, y * Go.TILE_SIZE);
@@ -35,11 +35,10 @@ public class Tile extends Rectangle {
             {
                 TimeUnit.MILLISECONDS.sleep(100);
             } catch(InterruptedException e)
-            {
-            }
+            {}
         }
         judgeDidHisJob = false;
-        Go.scene.setRoot(createContent());
+        paneThatImOn.setGoPane();
         flag =  !flag;
     }
 
@@ -50,13 +49,14 @@ public class Tile extends Rectangle {
             array[y][x] = 3;
             lasty = y;
             lastx = x;
-            Go.scene.setRoot(createContent());
+            paneThatImOn.setGoPane();
+//            Go.scene.setRoot(createContent()); // TODO trzeba odświeżyć
         }
         else if( ( x != lastx || y != lasty ) && array[y][x] != 0) {
             array[lasty][lastx] = 0;
             lasty = size-1;
             lastx = size-1;
-            Go.scene.setRoot(createContent());
+            paneThatImOn.setGoPane();
         }
     }
 
