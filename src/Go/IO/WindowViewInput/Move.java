@@ -17,6 +17,7 @@ public class Move implements Input
 	public State.Move getMove()
 	{
 		getMove = true;
+		judgeDidHisJob = true;
 		try
 		{
 			latch.await();
