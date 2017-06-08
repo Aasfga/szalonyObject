@@ -35,129 +35,71 @@ public class Game
 		return x >= 0 && x < board.array.length && y >= 0 && y < board.array.length;
 	}
 
-	private boolean isSurrounded(int y, int x, Board board, StoneColour colour)
+	private boolean isSurrounded(Cords cords, Board board, StoneColour colour)
 	{
-		if(!insideBoard(y, x, board))
+		if(!cords.areInside())
 			return true;
-		if(board.array[y][x].colour == StoneColour.Empty)
+		if(board.getStone(cords).equals(StoneColour.Empty))
 			return false;
-		if(board.array[y][x].colour != StoneColour.Empty && board.array[y][x].colour != colour)
+		if(enemyColour(colour, board.getStone(cords)))
 			return true;
-		if(board.array[y][x].visited)
+		if(board.isVisited(cords))
 			return true;
 
-		board.array[y][x].visited = true;
-		if(!isSurrounded(y, x - 1, board, colour))
-		{
-			board.array[y][x].visited = false;
-			return false;
-		}
-		if(!isSurrounded(y, x + 1, board, colour))
-		{
-			board.array[y][x].visited = false;
-			return false;
+		board.setVisited(cords);
 
-		}
-		if(!isSurrounded(y - 1, x, board, colour))
-		{
-			board.array[y][x].visited = false;
-			return false;
+		boolean ans = isSurrounded(cords.up(), board, colour) &&
+					  isSurrounded(cords.down(), board, colour) &&
+					  isSurrounded(cords.left(), board, colour) &&
+				      isSurrounded(cords.right(), board, colour);
 
-		}
-		if(!isSurrounded(y + 1, x, board, colour))
-		{
-			board.array[y][x].visited = false;
-			return false;
-		}
 
-		board.array[y][x].visited = false;
-
-		return true;
+		board.leave(cords);
+		return ans;
 	}
 
-
-	private void kill(int y, int x, Board board, StoneColour colour)
+	private void kill(Cords cords, Board board, StoneColour colour)
 	{
-		if(!insideBoard(y, x, board))
+		if(!cords.areInside())
 			return;
-		if(board.array[y][x].colour != colour)
+		if(!board.getStone(cords).equals(colour))
 			return;
 
-		board.array[y][x].colour = StoneColour.Empty;
+		board.setStone(cords, StoneColour.Empty);
 
-		kill(y - 1, x, board, colour);
-		kill(y + 1, x, board, colour);
-		kill(y, x - 1, board, colour);
-		kill(y, x + 1, board, colour);
+		kill(cords.up(), board, colour);
+		kill(cords.right(), board, colour);
+		kill(cords.left(), board, colour);
+		kill(cords.down(), board, colour);
 	}
 
-
-	private boolean isSelfKiller(State.Move move, Board board, StoneColour colour)
+	private boolean canBeKilled(Cords cords, Board board, StoneColour colour)
 	{
-		board.array[move.y][move.x].setColour(colour);
+		if(!cords.areInside())
+			return false;
+		return enemyColour(cords, colour, board) && isSurrounded(cords, board, board.getStone(cords));
+	}
 
-		int y;
-		int x;
-		if(isSurrounded(move.y, move.x, board, colour))
+	private boolean isSelfKiller(State.Move move, Board board)
+	{
+		Cords moveCords = board.new Cords(move.y, move.x);
+		StoneColour moveColour = move.player.getColour();
+
+		board.setStone(moveCords, moveColour);
+
+		if(!isSurrounded(moveCords, board, moveColour))
 		{
-			y = move.y - 1;
-			x = move.x;
-			if(insideBoard(y, x, board))
-			{
-				colour = board.array[y][x].colour;
-
-				if(colour != StoneColour.Empty && isSurrounded(y, x, board, colour))
-				{
-					board.array[move.y][move.x].setColour(StoneColour.Empty);
-					return false;
-				}
-
-			}
-			y = move.y + 1;
-			x = move.x;
-			if(insideBoard(y, x, board))
-			{
-				colour = board.array[y][x].colour;
-
-				if(colour != StoneColour.Empty && isSurrounded(y, x, board, colour))
-				{
-					board.array[move.y][move.x].setColour(StoneColour.Empty);
-					return false;
-				}
-
-			}
-			y = move.y;
-			x = move.x - 1;
-			if(insideBoard(y, x, board))
-			{
-				colour = board.array[y][x].colour;
-
-				if(colour != StoneColour.Empty && isSurrounded(y, x, board, colour))
-				{
-					board.array[move.y][move.x].setColour(StoneColour.Empty);
-					return false;
-				}
-
-			}
-			y = move.y;
-			x = move.x + 1;
-			if(insideBoard(y, x, board))
-			{
-				colour = board.array[y][x].colour;
-
-				if(colour != StoneColour.Empty && isSurrounded(y, x, board, colour))
-				{
-					board.array[move.y][move.x].setColour(StoneColour.Empty);
-					return false;
-				}
-
-			}
-			board.array[move.y][move.x].setColour(StoneColour.Empty);
-			return true;
+			board.setStone(moveCords, StoneColour.Empty);
+			return false;
 		}
 
-		board.array[move.y][move.x].setColour(StoneColour.Empty);
-		return false;
+		boolean ans = canBeKilled(moveCords.up(), board, moveColour) ||
+					  canBeKilled(moveCords.left(), board, moveColour) ||
+					  canBeKilled(moveCords.right(), board, moveColour) ||
+					  canBeKilled(moveCords.down(), board, moveColour);
+
+		board.setStone(moveCords, StoneColour.Empty);
+		return !ans;
 	}
 
 
@@ -169,61 +111,49 @@ public class Game
 		Board board = state.getBoard();
 
 
-
 		if(state.getPlayer() == move.player)
 			return false;
 
-		return board.array[y][x].colour.equals(StoneColour.Empty) && !isSelfKiller(move, board, colour);
+		return board.array[y][x].colour.equals(StoneColour.Empty) && !isSelfKiller(move, board);
+	}
+
+	private boolean enemyColour(Cords first, Cords second, Board board)
+	{
+		StoneColour f = board.getStone(first);
+		StoneColour s = board.getStone(second);
+
+		return enemyColour(f, s);
+	}
+
+	private boolean enemyColour(Cords first, StoneColour second, Board board)
+	{
+		return enemyColour(board.getStone(first), second);
+	}
+
+	private boolean enemyColour(StoneColour first, Cords second, Board board)
+	{
+		return enemyColour(second, first, board);
 	}
 
 	private boolean enemyColour(StoneColour first, StoneColour second)
 	{
-		return second != StoneColour.Empty && second != first;
+		return !second.equals(StoneColour.Empty) && !first.equals(second);
 	}
 
 	public State postMoveActions(State state, State.Move move)
 	{
-		int y = move.y;
-		int x = move.x;
 		Board board = state.getBoard();
-		StoneColour colour;
-		y = move.y - 1;
-		x = move.x;
-		if(insideBoard(y, x, board))
-		{
-			colour = board.array[y][x].colour;
+		Cords moveCords = board.new Cords(move.y, move.x);
+		StoneColour moveColour = move.player.getColour();
 
-			if(colour != StoneColour.Empty && isSurrounded(y, x, board, colour))
-				kill(y, x, board, colour);
-
-		}
-		y = move.y + 1;
-		x = move.x;
-		if(insideBoard(y, x, board))
-		{
-			colour = board.array[y][x].colour;
-			if(colour != StoneColour.Empty && isSurrounded(y, x, board, colour))
-				kill(y, x, board, colour);
-
-		}
-		y = move.y;
-		x = move.x - 1;
-		if(insideBoard(y, x, board))
-		{
-			colour = board.array[y][x].colour;
-			if(colour != StoneColour.Empty && isSurrounded(y, x, board, colour))
-				kill(y, x, board, colour);
-
-		}
-		y = move.y;
-		x = move.x + 1;
-		if(insideBoard(y, x, board))
-		{
-			colour = board.array[y][x].colour;
-			if(colour != StoneColour.Empty && isSurrounded(y, x, board, colour))
-				kill(y, x, board, colour);
-
-		}
+		if(canBeKilled(moveCords.up(), board, moveColour))
+			kill(moveCords.up(), board, moveColour.other());
+		if(canBeKilled(moveCords.right(), board, moveColour))
+			kill(moveCords.right(), board, moveColour.other());
+		if(canBeKilled(moveCords.left(), board, moveColour))
+			kill(moveCords.left(), board, moveColour.other());
+		if(canBeKilled(moveCords.down(), board, moveColour))
+			kill(moveCords.down(), board, moveColour.other());
 
 		return new State(state.getPlayer(), board);
 	}

@@ -1,9 +1,6 @@
 package Go.Logic;
 
 import Go.Common.StoneColour;
-import sun.invoke.empty.Empty;
-
-import java.util.ArrayList;
 
 public class Board
 {
@@ -18,6 +15,35 @@ public class Board
 			for(int j = 0; j < size; j++)
 				array[i][j] = new Stone();
 		}
+	}
+
+	void setVisited(Cords cords)
+	{
+		array[cords.y][cords.x].visited = true;
+	}
+
+	void leave(Cords cords)
+	{
+		array[cords.y][cords.x].visited = false;
+	}
+
+	boolean isVisited(Cords cords)
+	{
+		return array[cords.y][cords.x].visited;
+	}
+
+
+	void setStone(Cords cords, StoneColour colour)
+	{
+		if(cords.areInside())
+			array[cords.y][cords.x].colour = colour;
+		else
+			throw new IllegalArgumentException();
+	}
+
+	StoneColour getStone(Cords cords)
+	{
+		return array[cords.y][cords.x].colour;
 	}
 
 	public int[][] toArray()
@@ -40,6 +66,44 @@ public class Board
 		public void setColour(StoneColour c)
 		{
 			colour = c;
+		}
+	}
+
+	class Cords
+	{
+		int x;
+		int y;
+
+
+		Cords(int y, int x)
+		{
+			this.x = x;
+			this.y = y;
+		}
+
+		boolean areInside()
+		{
+			return x >= 0 && x < array.length && y >= 0 && y < array.length;
+		}
+
+		Cords up()
+		{
+			return new Cords(y + 1, x);
+		}
+
+		Cords down()
+		{
+			return new Cords(y - 1, x);
+		}
+
+		Cords left()
+		{
+			return new Cords(y, x - 1);
+		}
+
+		Cords right()
+		{
+			return new Cords(y, x + 1);
 		}
 	}
 }
