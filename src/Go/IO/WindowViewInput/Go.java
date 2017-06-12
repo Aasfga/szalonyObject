@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import static Go.IO.WindowViewInput.WindowView.array;
 
 public class Go extends Pane {
-
+    static boolean movecolour;
     static int TILE_SIZE = 50;
     static int WIDTH = 20;
     static int HEIGHT = 20;
@@ -21,7 +21,7 @@ public class Go extends Pane {
     private static boolean start = false;
 
     public Go() {
-        relocate(123,123);
+        relocate(75,70);
         setGoPane();
     }
 

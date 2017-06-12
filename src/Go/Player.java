@@ -27,7 +27,7 @@ public class Player
 
 	public State.Move makeMove()
 	{
-		State.Move move = input.getMove();
+		State.Move move = input.getMove(colour);
 		move.player = this;
 		return move;
 	}

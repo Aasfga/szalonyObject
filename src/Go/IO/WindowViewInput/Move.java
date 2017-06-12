@@ -1,11 +1,13 @@
 package Go.IO.WindowViewInput;
 
+import Go.Common.StoneColour;
 import Go.IO.Input;
 import Go.State;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import static Go.IO.WindowViewInput.Go.movecolour;
 import static Go.IO.WindowViewInput.WindowView.judgeDidHisJob;
 
 public class Move implements Input
@@ -14,8 +16,12 @@ public class Move implements Input
 	static volatile boolean getMove = false;
 	static CountDownLatch latch = new CountDownLatch(1);
 
-	public State.Move getMove()
+	public State.Move getMove(StoneColour colour)
 	{
+		if ( colour == StoneColour.Black) {
+			movecolour = true;
+		}
+		else movecolour = false;
 		getMove = true;
 		judgeDidHisJob = true;
 		try
@@ -42,3 +48,4 @@ public class Move implements Input
 		latch.countDown();
 	}
 }
+	
