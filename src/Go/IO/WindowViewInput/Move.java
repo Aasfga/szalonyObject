@@ -1,5 +1,6 @@
 package Go.IO.WindowViewInput;
 
+import Go.Common.StoneColour;
 import Go.IO.Input;
 import Go.State;
 
@@ -14,8 +15,9 @@ public class Move implements Input
 	static volatile boolean getMove = false;
 	static CountDownLatch latch = new CountDownLatch(1);
 
-	public State.Move getMove()
+	public State.Move getMove(StoneColour colour)
 	{
+		//TODO teraz Twoja kolej :D
 		getMove = true;
 		judgeDidHisJob = true;
 		try
