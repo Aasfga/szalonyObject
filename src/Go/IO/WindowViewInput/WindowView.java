@@ -1,6 +1,7 @@
 package Go.IO.WindowViewInput;
 
 import Go.IO.View;
+import Go.Logic.Game;
 import javafx.application.Application;
 import Go.State;
 
@@ -52,6 +53,12 @@ public class WindowView implements View
 			}
 		}
 		judgeDidHisJob = true;
+	}
+
+	@Override
+	public void setError(Game.Result res)
+	{
+
 	}
 
 //    public static void main(String[] args) throws InterruptedException {

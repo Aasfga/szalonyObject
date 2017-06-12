@@ -4,6 +4,7 @@ package Go.IO.ConsoleViewInput;
 import Go.Common.StoneColour;
 import Go.IO.View;
 import Go.Logic.Board;
+import Go.Logic.Game;
 import Go.State;
 
 import java.io.PrintStream;
@@ -49,6 +50,10 @@ public class ConsoleView implements View
 		}
 
 	}
+
+	@Override
+	public void setError(Game.Result res)
+	{}
 
 	static void printLine(int size)
 	{

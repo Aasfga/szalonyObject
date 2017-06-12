@@ -46,10 +46,16 @@ public interface Match
 		private State.Move getCorrectMove(Player p)
 		{
 			State.Move move;
-			do
+			while(true)
 			{
 				move = p.makeMove();
-			}while(!game.isCorrect(state, move));
+				Game.Result res = game.isCorrect(state, move);
+
+				if(res.equals(Game.Result.Success))
+					break;
+				else
+					view.setError(res);
+			}
 
 			return move;
 		}

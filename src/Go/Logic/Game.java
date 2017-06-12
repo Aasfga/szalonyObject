@@ -103,7 +103,7 @@ public class Game
 	}
 
 
-	public boolean isCorrect(State state, State.Move move)
+	public Result isCorrect(State state, State.Move move)
 	{
 		int x = move.x;
 		int y = move.y;
@@ -112,9 +112,14 @@ public class Game
 
 
 		if(state.getPlayer() == move.player)
-			return false;
+			return Result.WrongPlayer;
+		if(isSelfKiller(move, board))
+			return Result.Suicide;
+		if(!board.array[y][x].colour.equals(StoneColour.Empty))
+			return Result.WrongMove;
 
-		return board.array[y][x].colour.equals(StoneColour.Empty) && !isSelfKiller(move, board);
+
+		return Result.Success;
 	}
 
 	private boolean enemyColour(Cords first, Cords second, Board board)
@@ -165,4 +170,13 @@ public class Game
 		return new State(move.player, board);
 	}
 
+
+	public enum Result
+	{
+		Success,
+		Ko,
+		Suicide,
+		WrongMove,
+		WrongPlayer
+	}
 }
