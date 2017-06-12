@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Go.IO.WindowViewInput.Controllers.MenuController">
+   <children>
+      <ImageView fitHeight="636.0" fitWidth="1014.0" layoutX="-34.0" layoutY="-45.0" pickOnBounds="true">
+         <image>
+            <Image url="@go_menu.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="192.0" layoutY="403.0" mnemonicParsing="false" onAction="#newgame" text="Nowa Gra" />
+   </children>
+</Pane>

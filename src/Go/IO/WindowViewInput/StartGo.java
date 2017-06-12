@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class StartGo extends Application{
+public class StartGo extends Pane{
 
     static int  TILE_SIZE = 50;
     static int  WIDTH = 20;

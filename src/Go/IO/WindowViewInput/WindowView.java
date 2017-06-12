@@ -8,7 +8,7 @@ import Go.State;
 import static Go.IO.WindowViewInput.Go.*;
 
 public class WindowView implements View {
-	static final int size = 11;
+	static final int size = 13;
 	static char[][] array = new char[size][size];
 	static int lastx = size - 1;
 	static int lasty = size - 1;
@@ -18,7 +18,7 @@ public class WindowView implements View {
 	public static void startingView(int size) {
 		HEIGHT = size;
 		WIDTH = size;
-		new Thread(() -> Application.launch(StartGo.class)).start();
+		new Thread(() -> Application.launch(MainApp.class)).start();
 	}
 
 	@Override

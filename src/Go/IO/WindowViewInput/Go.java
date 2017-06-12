@@ -11,7 +11,6 @@ public class Go extends Pane {
     static int TILE_SIZE = 50;
     static int WIDTH = 20;
     static int HEIGHT = 20;
-    static int PANEL_SIZE = 200;
     static Scene scene;
     static boolean flag = false; // false - WHITE, true - BLACK
     private static Group tileGroup = new Group();
@@ -36,9 +35,7 @@ public class Go extends Pane {
          backlight.getChildren().clear();
          scoreGroup.getChildren().clear();
 
-         RightPanel panel = new RightPanel("cos", "cos");//,score1,score2);
-         setPrefSize(TILE_SIZE * WIDTH + PANEL_SIZE, TILE_SIZE * HEIGHT);
-         getChildren().add(panel);
+         setPrefSize(TILE_SIZE * WIDTH, TILE_SIZE * HEIGHT);
          getChildren().addAll(tileGroup, lineGroup, pieceGroup, backlight, scoreGroup);
 
          // Row lines
