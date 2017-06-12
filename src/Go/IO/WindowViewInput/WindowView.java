@@ -3,39 +3,25 @@ package Go.IO.WindowViewInput;
 import Go.IO.View;
 import Go.Logic.Game;
 import javafx.application.Application;
+
 import Go.State;
 
 import static Go.IO.WindowViewInput.Go.*;
 
-
 public class WindowView implements View
 {
-
 	static final int size = 11;
 	static char[][] array = new char[size][size];
 	static int lastx = size - 1;
 	static int lasty = size - 1;
 	public static volatile boolean judgeDidHisJob = false;
 
-//	public synchronized void setCurrentViewa(State state)
-//	{
-//		int index = 0;
-//		for(int y = 0; y < HEIGHT; y++)
-//		{
-//			for(int x = 0; x < WIDTH; x++)
-//			{
-//				array[y][x] = viewToSet.charAt(index);
-//				index++;
-//			}
-//		}
-//		judgeDidHisJob = true;
-//	}
 
 	public static void startingView(int size)
 	{
 		HEIGHT = size;
 		WIDTH = size;
-		new Thread(() -> Application.launch(Go.class)).start();
+		new Thread(() -> Application.launch(StartGo.class)).start();
 	}
 
 	@Override
@@ -47,8 +33,8 @@ public class WindowView implements View
 		{
 			for(int j = 0; j < size; j++)
 			{
-				if (  intArray[i][j] == 0 ) array[i][j] = 0;
-				else if ( intArray[i][j] == 1) array[i][j] = 1;
+				if(intArray[i][j] == 0) array[i][j] = 0;
+				else if(intArray[i][j] == 1) array[i][j] = 1;
 				else array[i][j] = 2;
 			}
 		}
