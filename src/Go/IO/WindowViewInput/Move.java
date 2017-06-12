@@ -48,4 +48,3 @@ public class Move implements Input
 		latch.countDown();
 	}
 }
-	

@@ -9,7 +9,7 @@ import static Go.IO.WindowViewInput.Go.*;
 
 public class WindowView implements View {
 	static final int size = 13;
-	static char[][] array = new char[size][size];
+	static char[][] array = new char[size+1][size+1];
 	static int lastx = size - 1;
 	static int lasty = size - 1;
 	public static volatile boolean judgeDidHisJob = false;
