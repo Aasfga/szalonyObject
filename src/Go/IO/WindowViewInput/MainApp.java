@@ -13,8 +13,8 @@ public class MainApp extends Application {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("fxml_files/MainScreen.fxml"));
         StackPane stackPane = loader.load();
         primaryStage.setTitle("GO - game");
-        primaryStage.setScene(new Scene(stackPane, 1000, 800));
-        primaryStage.setMaximized(false);
+        primaryStage.setScene(new Scene(stackPane, 985, 775));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }

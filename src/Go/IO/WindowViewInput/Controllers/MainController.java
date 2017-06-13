@@ -5,12 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class MainController {
     @FXML
     private StackPane mainStackPane;
-
+    private Pane menu;
 
     @FXML
     public void initialize() {
@@ -21,6 +22,7 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        menu = pane;
         MenuController menuController = loader.getController();
         menuController.setMainController(this);
         setScreen(pane);
@@ -29,6 +31,10 @@ public class MainController {
     public void setScreen(Pane pane){
         mainStackPane.getChildren().clear();
         mainStackPane.getChildren().add(pane);
+    }
+
+    public void setMenu(){
+        setScreen(menu);
     }
 
 }
