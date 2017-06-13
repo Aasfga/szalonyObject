@@ -1,6 +1,6 @@
 package Go.IO.WindowViewInput;
 
-import javafx.scene.layout.Pane;
+import Go.IO.WindowViewInput.Controllers.MenuController;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -13,6 +13,12 @@ import static Go.IO.WindowViewInput.WindowView.*;
 public class Tile extends Rectangle {
 
     public static Go paneThatImOn;
+
+    public static void setMenu(MenuController menu) {
+        Tile.menu = menu;
+    }
+
+    public static MenuController menu;
 
     public Tile(int x, int y, Go pane) {
         paneThatImOn = pane;
@@ -27,8 +33,8 @@ public class Tile extends Rectangle {
     public static synchronized void thingsToDoWhenClicked(int x, int y) {
             if ( x!= -1 ) {
                 array[lasty][lastx] = 0;
-                lastx = size;
-                lasty = size;
+                lastx = finalSize;
+                lasty = finalSize;
                 array[y][x] = 0;
             }
             setMove(x, y);
@@ -41,6 +47,7 @@ public class Tile extends Rectangle {
             }
             judgeDidHisJob = false;
             paneThatImOn.setGoPane();
+            menu.newgame();
             flag =  !flag;
     }
 
@@ -56,8 +63,8 @@ public class Tile extends Rectangle {
         }
         else if( ( x != lastx || y != lasty ) && array[y][x] != 0) {
             array[lasty][lastx] = 0;
-            lasty = size;
-            lastx = size;
+            lasty = finalSize;
+            lastx = finalSize;
             paneThatImOn.setGoPane();
         }
     }

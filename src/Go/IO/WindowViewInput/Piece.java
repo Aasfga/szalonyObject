@@ -1,5 +1,6 @@
 package Go.IO.WindowViewInput;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -20,13 +21,15 @@ public class Piece extends StackPane{
         Ellipse bg = new Ellipse(TILE_SIZE * 0.3125, TILE_SIZE * 0.26);
 
         if( type == PieceType.BLACK ) {
-            File file = new File("b.png");
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../fxml_files/Back.fxml"));
+
+            File file = new File("src/Go/IO/WindowViewInput/images/b.png");
             Image img = new Image(file.toURI().toString());
             ImagePattern image = new ImagePattern(img);
             bg.setFill(image);
         }
         else {
-            File file = new File("w.png");
+            File file = new File("src/Go/IO/WindowViewInput/images/w.png");
             Image img = new Image(file.toURI().toString());
             ImagePattern image = new ImagePattern(img);
             bg.setFill(image);

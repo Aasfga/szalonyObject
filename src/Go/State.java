@@ -1,12 +1,11 @@
 package Go;
 
 import Go.Logic.Board;
-import Go.Player;
 
 import java.util.ArrayList;
 
-import static Go.IO.WindowViewInput.Go.numberblack;
-import static Go.IO.WindowViewInput.Go.numberwhite;
+import static Go.IO.WindowViewInput.Go.scoreblack;
+import static Go.IO.WindowViewInput.Go.scorewhite;
 
 public class State
 {
@@ -23,8 +22,8 @@ public class State
 		history = h;
 		whiteCaptured = wc;
 		blackCaptured = bc;
-		numberwhite = wc;
-		numberblack = bc;
+		scorewhite = wc;
+		scoreblack = bc;
 	}
 
 	public Board getBoard()

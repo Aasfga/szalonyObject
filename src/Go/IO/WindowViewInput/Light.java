@@ -18,13 +18,13 @@ public class Light extends StackPane {
         relocate(x* Go.TILE_SIZE, y* Go.TILE_SIZE);
         Ellipse bg = new Ellipse(Go.TILE_SIZE * 0.3125, Go.TILE_SIZE * 0.26);
         if(movecolour) {
-            File file = new File("blight.png");
+            File file = new File("src/Go/IO/WindowViewInput/images/blight.png");
             Image img = new Image(file.toURI().toString());
             ImagePattern image = new ImagePattern(img);
             bg.setFill(image);
         }
         else {
-            File file = new File("wlight.png");
+            File file = new File("src/Go/IO/WindowViewInput/images/wlight.png");
             Image img = new Image(file.toURI().toString());
             ImagePattern image = new ImagePattern(img);
             bg.setFill(image);

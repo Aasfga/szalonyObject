@@ -7,6 +7,6 @@
    <children>
       <Button layoutX="-242.0" layoutY="-179.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="101.0" text="Wstecz" textAlignment="CENTER" />
       <Button layoutX="-127.0" layoutY="-179.0" mnemonicParsing="false" onAction="#save" prefHeight="31.0" prefWidth="101.0" text="Zapisz Grę" />
-      <Button layoutX="-242.0" layoutY="-229.0" mnemonicParsing="false" onAction="#pas" prefHeight="31.0" prefWidth="101.0" text="Pas" />
+      <Button layoutX="-242.0" layoutY="-255.0" mnemonicParsing="false" onAction="#pas" prefHeight="40.0" prefWidth="218.0" text="Pas" />
    </children>
 </Pane>
