@@ -19,6 +19,9 @@ public class Remote {
     private URL serverAddr;
     private long sessionID;
     private CloseableHttpClient httpclient;
+    private String uuid;
+    private int gameid;
+    private String color;
 
     public Remote(String url) {
         try {
@@ -66,6 +69,7 @@ public class Remote {
             System.out.println(responseString);
             LoginResponse received = (new Gson()).fromJson(responseString, LoginResponse.class);
             result = received.uuid;
+            this.uuid = received.uuid;
             response.close();
         }
         catch( IOException e ) {
@@ -108,7 +112,10 @@ public class Remote {
         }
     }
 
-    private class Prompt
+    private class PromptResponse {
+        public int gameid;
+        public String color;
+    }
 
     public boolean prompt(String uuid) {
         boolean result = false;
@@ -130,6 +137,9 @@ public class Remote {
             String responseString = EntityUtils.toString(entity, "UTF-8");
             if(! responseString.equals("WAIT")) {
                 result = true;
+                PromptResponse received = (new Gson()).fromJson(responseString, PromptResponse.class);
+                this.gameid = received.gameid;
+                this.color = received.color;
             }
             System.out.println(responseString);
             response.close();
