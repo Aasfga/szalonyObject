@@ -3,6 +3,8 @@ package Go.IO.WindowViewInput.Controllers;
 
 import javafx.fxml.FXML;
 
+import static Go.IO.WindowViewInput.Tile.thingsToDoWhenClicked;
+
 /**
  * Created by Kruti on 13.06.2017.
  */
@@ -24,7 +26,7 @@ public class BackController {
 
     @FXML
     public void pas() {
-        System.out.println("XD");
+        thingsToDoWhenClicked(-1,1);
     }
 
 
