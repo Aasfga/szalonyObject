@@ -32,6 +32,32 @@ public class Game
 		if(move.x == -2)
 			return true;
 
+		ArrayList<Board> history = state.getHistory();
+		int size = history.size();
+		try
+		{
+
+			Board a = history.get(size - 1);
+			Board b = history.get(size - 2);
+			Board c = history.get(size - 3);
+			Board d = history.get(size - 4);
+
+
+			if(a.equals(b)) ;
+				System.out.println("1");
+			if(b.equals(c))
+				System.out.println("2");
+			if(c.equals(d))
+				System.out.println("3");
+
+			if(a.equals(b) && b.equals(c) && c.equals(d))
+				return true;
+		} catch(Exception e)
+		{
+			return false;
+		}
+
+
 		return false;
 	}
 
@@ -228,6 +254,7 @@ public class Game
 		Ko,
 		Suicide,
 		WrongMove,
+		EndGame,
 		WrongPlayer
 	}
 }
