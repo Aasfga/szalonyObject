@@ -3,7 +3,6 @@ package Go.Logic;
 import Go.Common.StoneColour;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Board implements Serializable
 {
@@ -71,26 +70,6 @@ public class Board implements Serializable
 				array[i][j] = this.array[i][j].colour.getValue();
 		}
 		return array;
-	}
-
-	public boolean equals(Object other)
-	{
-		if(other == null)
-			return false;
-		if(!(other instanceof Board))
-			return false;
-		Board b = (Board) other;
-
-		for(int i = 0; i < b.array.length; i++)
-		{
-			for(int j = 0; j < b.array.length; j++)
-			{
-				if(!array[i][j].equals(b.array[i][j]))
-					return false;
-			}
-		}
-
-		return true;
 	}
 
 	public static class Stone implements Serializable

@@ -103,8 +103,6 @@ public interface Match
 				state = game.postMoveActions(state, move);
 				System.out.println("White captured: " + state.getWhiteCaptured() + "  ##  Black captured: " + state.getBlackCaptured());
 			}while(!game.isEnd(state, move));
-
-			view.setError(Game.Result.EndGame);
 		}
 	}
 }

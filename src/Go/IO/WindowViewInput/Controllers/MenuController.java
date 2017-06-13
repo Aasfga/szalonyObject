@@ -146,6 +146,10 @@ public class MenuController {
         Platform.exit();
     }
 
+    public void multiplayer(){
+        //TODO
+    }
+
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }

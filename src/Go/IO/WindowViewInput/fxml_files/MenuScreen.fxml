@@ -12,8 +12,9 @@
             <Image url="@go_menu.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="85.0" layoutY="453.0" mnemonicParsing="false" onAction="#newgame" prefHeight="31.0" prefWidth="104.0" text="Nowa Gra" />
-      <Button layoutX="198.0" layoutY="453.0" mnemonicParsing="false" onAction="#loadgame" prefHeight="31.0" prefWidth="104.0" text="Wczytaj Grę" />
-      <Button layoutX="311.0" layoutY="453.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="104.0" text="Wyjście" />
+      <Button layoutX="58.0" layoutY="326.0" mnemonicParsing="false" onAction="#newgame" prefHeight="31.0" prefWidth="104.0" text="Single" />
+      <Button layoutX="58.0" layoutY="427.0" mnemonicParsing="false" onAction="#loadgame" prefHeight="31.0" prefWidth="104.0" text="Wczytaj Grę" />
+      <Button layoutX="58.0" layoutY="477.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="104.0" text="Wyjście" />
+      <Button layoutX="58.0" layoutY="374.0" mnemonicParsing="false" onAction="#multiplayer" prefHeight="31.0" prefWidth="104.0" text="Multiplayer" />
    </children>
 </Pane>
