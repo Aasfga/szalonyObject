@@ -4,6 +4,8 @@ import Go.Common.StoneColour;
 import Go.State;
 import Go.Logic.Board.*;
 
+import java.util.ArrayList;
+
 public class Game
 {
 	static Game game;
@@ -103,6 +105,35 @@ public class Game
 	}
 
 
+	private boolean koMove(State state, State.Move move)
+	{
+		ArrayList<Board> history = state.getHistory();
+		Board board = new Board(postMoveActions(addMove(state, move), move).getBoard());
+		board.setStone(board.new Cords(move.y, move.x), move.player.getColour());
+		Board last;
+
+		try
+		{
+			last = history.get(history.size() - 1);
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+
+		for(int i = 0; i < last.array.length; i++)
+		{
+			for(int j = 0; j < last.array.length; j++)
+			{
+				if(!last.array[i][j].equals(board.array[i][j]))
+					return false;
+			}
+		}
+
+
+		return true;
+	}
+
 	public Result isCorrect(State state, State.Move move)
 	{
 		int x = move.x;
@@ -111,13 +142,14 @@ public class Game
 		Board board = state.getBoard();
 
 
+		if(!board.array[y][x].colour.equals(StoneColour.Empty))
+			return Result.WrongMove;
 		if(state.getPlayer() == move.player)
 			return Result.WrongPlayer;
 		if(isSelfKiller(move, board))
 			return Result.Suicide;
-		if(!board.array[y][x].colour.equals(StoneColour.Empty))
-			return Result.WrongMove;
-
+		if(koMove(state, move))
+			return Result.Ko;
 
 		return Result.Success;
 	}
@@ -160,14 +192,17 @@ public class Game
 		if(canBeKilled(moveCords.down(), board, moveColour))
 			kill(moveCords.down(), board, moveColour.other());
 
-		return new State(state.getPlayer(), board);
+		return new State(state.getPlayer(), board, state.getHistory());
 	}
 
 	public State addMove(State state, State.Move move)
 	{
-		Board board = state.getBoard();
+
+		Board board = new Board(state.getBoard());
 		board.array[move.y][move.x].setColour(move.player.getColour());
-		return new State(move.player, board);
+		ArrayList<Board> history = (ArrayList<Board>) state.getHistory().clone();
+		history.add(state.getBoard());
+		return new State(move.player, board, history);
 	}
 
 

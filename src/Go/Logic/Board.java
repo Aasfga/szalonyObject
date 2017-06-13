@@ -17,6 +17,18 @@ public class Board
 		}
 	}
 
+	Board(Board b)
+	{
+		size = b.size;
+		array = new Stone[size][size];
+
+		for(int i = 0; i < size; i++)
+		{
+			for(int j = 0; j < size; j++)
+					array[i][j] = new Stone(b.array[i][j]);
+		}
+	}
+
 	void setVisited(Cords cords)
 	{
 		array[cords.y][cords.x].visited = true;
@@ -63,9 +75,30 @@ public class Board
 		StoneColour colour = StoneColour.Empty;
 		boolean visited = false;
 
+		public Stone()
+		{}
+
+		public Stone(Stone stone)
+		{
+			colour = stone.colour;
+		}
+
 		public void setColour(StoneColour c)
 		{
 			colour = c;
+		}
+
+		@Override
+		public boolean equals(Object o)
+		{
+			if(o == null)
+				return false;
+			else if(!(o instanceof Stone))
+				return false;
+
+			Stone other = (Stone) o;
+
+			return colour.equals(other.colour);
 		}
 	}
 

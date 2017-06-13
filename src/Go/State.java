@@ -9,11 +9,13 @@ public class State
 {
 	Player player;
 	Board board;
+	ArrayList<Board> history;
 
-	public State(Player p, Board b)
+	public State(Player p, Board b, ArrayList<Board> h)
 	{
 		player = p;
 		board = b;
+		history = h;
 	}
 
 	public Board getBoard()
@@ -26,6 +28,10 @@ public class State
 		return player;
 	}
 
+	public ArrayList<Board> getHistory()
+	{
+		return history;
+	}
 
 	public static class Move
 	{

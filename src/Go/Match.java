@@ -4,6 +4,7 @@ import Go.IO.View;
 import Go.Logic.Board;
 import Go.Logic.Game;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -35,7 +36,7 @@ public interface Match
 			players[1] = p[1 - x];
 			players[0].setColour(Black);
 			players[1].setColour(White);
-			state = new State(players[1], board);
+			state = new State(players[1], board, new ArrayList<>());
 		}
 
 		private Player getCurrentPlayer(Player p)
