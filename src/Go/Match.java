@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import Server.Client;
+
 import static Go.Common.StoneColour.Black;
 import static Go.Common.StoneColour.White;
 
@@ -16,6 +18,43 @@ public interface Match
 	void startGame();
 	State getState();
 	Player[] getPlayers();
+
+	class RemoteMatch implements Match, Runnable {
+        Player players[] = new Player[2];
+        View view;
+        State state;
+        Game game = Game.get();
+
+        public RemoteMatch(Client c, View v, Board board, Player... p)
+        {
+            if(p.length != 2)
+                throw new IllegalArgumentException("Wrong number of players");
+            view = v;
+
+            players = p;
+            state = new State(players[1], board, new ArrayList<>(), 0, 0);
+        }
+
+		@Override
+		public void startGame() {
+
+		}
+
+		@Override
+		public State getState() {
+			return null;
+		}
+
+		@Override
+		public Player[] getPlayers() {
+			return new Player[0];
+		}
+
+		@Override
+		public void run() {
+
+		}
+	}
 
 
 	class LocalMatch implements Match, Runnable

@@ -1,4 +1,5 @@
 package Go.IO.WindowViewInput.Controllers;
+import Go.Common.StoneColour;
 import Go.IO.WindowViewInput.*;
 import Go.Logic.Board;
 import Go.Logic.Game;
@@ -157,11 +158,20 @@ public class MenuController {
             catch(Exception e) {}
         }
 
-        Player f = new Player("888888-88888", new Move());
-        Player s = new Player("opponent", new Move());
+        Player f = new Player(uuid, new Move());
+        Player s = new Player("opponent", new Move()); // Move to RemoteMove
         WindowView view = new WindowView();
         Board board = Game.get().getInitBoard(13);
-        match = new  Match.LocalMatch(view, board, f, s);
+        if( c.getColor().equals("white") ) {
+            f.setColour(StoneColour.White);
+            s.setColour(StoneColour.Black);
+            match = new  Match.RemoteMatch(c, view, board, f, s);
+        }
+        else {
+            f.setColour(StoneColour.Black);
+            s.setColour(StoneColour.White);
+            match = new  Match.RemoteMatch(c, view, board, s, f);
+        }
         match.startGame();
         refresh();
     }

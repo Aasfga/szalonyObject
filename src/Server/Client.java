@@ -20,4 +20,8 @@ public class Client {
     public boolean prompt(String uuid) {
         return r.prompt(uuid);
     }
+
+    public String getColor() {
+        return r.color;
+    }
 }

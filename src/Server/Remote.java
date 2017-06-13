@@ -21,7 +21,7 @@ public class Remote {
     private CloseableHttpClient httpclient;
     private String uuid;
     private int gameid;
-    private String color;
+    protected String color;
 
     public Remote(String url) {
         try {
