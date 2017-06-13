@@ -2,12 +2,13 @@ package Go;
 
 import Go.Logic.Board;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static Go.IO.WindowViewInput.Go.scoreblack;
 import static Go.IO.WindowViewInput.Go.scorewhite;
 
-public class State
+public class State implements Serializable
 {
 	Player player;
 	Board board;
@@ -61,6 +62,28 @@ public class State
 		{
 			this.y = y;
 			this.x = x;
+		}
+	}
+
+	public static class Container implements Serializable
+	{
+		State state;
+		Player players[];
+
+		public Container(State s, Player p[])
+		{
+			state = s;
+			players = p;
+		}
+
+		public State getState()
+		{
+			return state;
+		}
+
+		public Player[] getPlayers()
+		{
+			return players;
 		}
 	}
 }

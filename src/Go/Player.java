@@ -3,7 +3,9 @@ package Go;
 import Go.Common.StoneColour;
 import Go.IO.Input;
 
-public class Player
+import java.io.Serializable;
+
+public class Player implements Serializable
 {
 	String name;
 	Input input;
@@ -30,5 +32,10 @@ public class Player
 		State.Move move = input.getMove(colour);
 		move.player = this;
 		return move;
+	}
+
+	public void setInput(Input i)
+	{
+		this.input = i;
 	}
 }

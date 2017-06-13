@@ -14,6 +14,8 @@ import static Go.Common.StoneColour.White;
 public interface Match
 {
 	void startGame();
+	State getState();
+	Player[] getPlayers();
 
 
 	class LocalMatch implements Match, Runnable
@@ -37,6 +39,13 @@ public interface Match
 			players[0].setColour(Black);
 			players[1].setColour(White);
 			state = new State(players[1], board, new ArrayList<>(), 0, 0);
+		}
+
+		public LocalMatch(View v, State s, Player... p)
+		{
+			state = s;
+			view = v;
+			players = p;
 		}
 
 		private Player getCurrentPlayer(Player p)
@@ -66,6 +75,18 @@ public interface Match
 		public void startGame()
 		{
 			new Thread(this).start();
+		}
+
+		@Override
+		public State getState()
+		{
+			return state;
+		}
+
+		@Override
+		public Player[] getPlayers()
+		{
+			return players;
 		}
 
 		@Override

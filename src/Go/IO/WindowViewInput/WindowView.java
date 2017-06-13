@@ -6,9 +6,11 @@ import javafx.application.Application;
 
 import Go.State;
 
+import java.io.Serializable;
+
 import static Go.IO.WindowViewInput.Go.*;
 
-public class WindowView implements View {
+public class WindowView implements View, Serializable{
 	public static final int finalSize = 13;
 	public static char[][] array = new char[21][21];
 	static int lastx = finalSize - 1;

@@ -18,9 +18,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-
+import Go.State;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import static Go.IO.WindowViewInput.Go.scoreblack;
 import static Go.IO.WindowViewInput.Go.scorewhite;
@@ -28,6 +30,7 @@ import static Go.IO.WindowViewInput.Go.scorewhite;
 public class MenuController {
 
     private MainController mainController;
+    Match match;
 
 
     @FXML
@@ -37,7 +40,7 @@ public class MenuController {
         Player s = new Player("kinimoD", new Move());
         WindowView view = new WindowView();
         Board board = Game.get().getInitBoard(13);
-        Match match = new  Match.LocalMatch(view, board, f, s);
+        match = new  Match.LocalMatch(view, board, f, s);
         match.startGame();
         refresh();
     }
@@ -68,6 +71,7 @@ public class MenuController {
         }
         BackController backController = loader.getController();
         backController.setMainController(mainController);
+        backController.match = this.match;
 
         //
         Pane panelBlack = new Pane();
@@ -109,7 +113,28 @@ public class MenuController {
     }
 
     public void loadgame() {
-        System.out.println("YEAAAH"); //TODO (czyt. 'todo' )
+        WindowView view = new WindowView();
+
+        State.Container container;
+        try
+        {
+            FileInputStream fileIn = new FileInputStream("save.go");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            container = (State.Container) in.readObject();
+            in.close();
+            fileIn.close();
+        }
+        catch(Exception e)
+        {
+        	throw new NullPointerException("trolololo nie ma zapisu");
+        }
+
+        Player player[] = container.getPlayers();
+        player[0].setInput(new Move());
+        player[1].setInput(new Move());
+        match = new Match.LocalMatch(view, container.getState(), player);
+        match.startGame();
+        refresh();
     }
 
     public void exit() {

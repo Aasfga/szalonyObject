@@ -2,7 +2,9 @@ package Go.Logic;
 
 import Go.Common.StoneColour;
 
-public class Board
+import java.io.Serializable;
+
+public class Board implements Serializable
 {
 	final int size;
 	Stone array[][];
@@ -70,7 +72,7 @@ public class Board
 		return array;
 	}
 
-	public static class Stone
+	public static class Stone implements Serializable
 	{
 		StoneColour colour = StoneColour.Empty;
 		boolean visited = false;

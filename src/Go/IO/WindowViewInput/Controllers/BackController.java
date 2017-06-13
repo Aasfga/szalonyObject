@@ -1,7 +1,13 @@
 package Go.IO.WindowViewInput.Controllers;
 
 
+import Go.Match;
+import Go.State;
 import javafx.fxml.FXML;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 import static Go.IO.WindowViewInput.Go.scoreblack;
 import static Go.IO.WindowViewInput.Go.scorewhite;
@@ -13,38 +19,58 @@ import static Go.IO.WindowViewInput.WindowView.finalSize;
 /**
  * Created by Kruti on 13.06.2017.
  */
-public class BackController {
+public class BackController
+{
 
-    private MainController mainController;
+	private MainController mainController;
+	Match match;
 
-    @FXML
-    public void back() {
-        mainController.setMenu();
+	@FXML
+	public void back()
+	{
+		mainController.setMenu();
 
-        for (int i = 0; i < finalSize; i++) {
-            for (int j = 0; j < finalSize; j++) {
-                array[i][j] = 0;
-            }
-        }
-        scorewhite = 0;
-        scoreblack = 0;
-        setMove(-2, -2);
-    }
+		for(int i = 0; i < finalSize; i++)
+		{
+			for(int j = 0; j < finalSize; j++)
+			{
+				array[i][j] = 0;
+			}
+		}
+		scorewhite = 0;
+		scoreblack = 0;
+		setMove(-2, -2);
+	}
 
-    @FXML
-    public void save() {
-        System.out.println("XD");
-    }
+	@FXML
+	public void save()
+	{
+		State.Container container = new State.Container(match.getState(), match.getPlayers());
 
-    @FXML
-    public void pas() {
-        thingsToDoWhenClicked(-1,-1);
-    }
+		FileOutputStream fileOut = null;
+		try
+		{
+			fileOut = new FileOutputStream("save.go");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(container);
+			out.close();
+			fileOut.close();
+		} catch(Exception e)
+		{
+		}
+	}
+
+	@FXML
+	public void pas()
+	{
+		thingsToDoWhenClicked(-1, -1);
+	}
 
 
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
+	public void setMainController(MainController mainController)
+	{
+		this.mainController = mainController;
+	}
 
 
 }

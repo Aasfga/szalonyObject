@@ -4,13 +4,14 @@ import Go.Common.StoneColour;
 import Go.IO.Input;
 import Go.State;
 
+import java.io.Serializable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import static Go.IO.WindowViewInput.Go.movecolour;
 import static Go.IO.WindowViewInput.WindowView.judgeDidHisJob;
 
-public class Move implements Input
+public class Move implements Input, Serializable
 {
 	static State.Move content = null;
 	static volatile boolean getMove = false;
