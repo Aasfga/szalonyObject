@@ -38,7 +38,7 @@ public class Move implements Input
 		return ans;
 	}
 
-	static synchronized void setMove(int x, int y)
+	public static synchronized void setMove(int x, int y)
 	{
 		if(!getMove)
 			return;

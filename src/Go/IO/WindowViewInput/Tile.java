@@ -47,7 +47,7 @@ public class Tile extends Rectangle {
             }
             judgeDidHisJob = false;
             paneThatImOn.setGoPane();
-            menu.newgame();
+            menu.refresh();
             flag =  !flag;
     }
 

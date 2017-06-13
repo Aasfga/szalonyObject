@@ -33,6 +33,16 @@ public class MenuController {
     @FXML
     public void newgame() {
 
+        Player f = new Player("Dominik", new Move());
+        Player s = new Player("kinimoD", new Move());
+        WindowView view = new WindowView();
+        Board board = Game.get().getInitBoard(13);
+        Match match = new  Match.LocalMatch(view, board, f, s);
+        match.startGame();
+        refresh();
+    }
+
+    public void refresh() {
         Tile.setMenu(this);
         Pane root = new Pane();
         root.setPrefSize(1000, 800);
@@ -96,10 +106,7 @@ public class MenuController {
         root.getChildren().add(panelBlack);
         root.getChildren().add(panelWhite);
         mainController.setScreen(root);
-
-
     }
-
 
     public void loadgame() {
         System.out.println("YEAAAH"); //TODO (czyt. 'todo' )
