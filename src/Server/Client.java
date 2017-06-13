@@ -12,4 +12,12 @@ public class Client {
     public String login() {
         return r.login();
     }
+
+    public void entrygame(String uuid) {
+        r.entrygame(uuid);
+    }
+
+    public boolean prompt(String uuid) {
+        return r.prompt(uuid);
+    }
 }

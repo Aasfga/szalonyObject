@@ -1,7 +1,5 @@
 package Go.IO.WindowViewInput.Controllers;
-import Go.IO.WindowViewInput.Move;
-import Go.IO.WindowViewInput.Tile;
-import Go.IO.WindowViewInput.WindowView;
+import Go.IO.WindowViewInput.*;
 import Go.Logic.Board;
 import Go.Logic.Game;
 import Go.Player;
@@ -11,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import Go.IO.WindowViewInput.Go;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -148,17 +145,25 @@ public class MenuController {
         Platform.exit();
     }
 
-    public void multiplayer(){
+    public void multiplayer() {
         Client c = new Client();
         String uuid = c.login();
+        System.out.println(uuid);
+        c.entrygame(uuid);
+        while(!c.prompt(uuid)) {
+            try {
+                Thread.sleep(500);
+            }
+            catch(Exception e) {}
+        }
 
-        /*Player f = new Player(uuid, new Move());
+        Player f = new Player("888888-88888", new Move());
         Player s = new Player("opponent", new Move());
         WindowView view = new WindowView();
         Board board = Game.get().getInitBoard(13);
         match = new  Match.LocalMatch(view, board, f, s);
         match.startGame();
-        refresh();*/
+        refresh();
     }
 
     public void setMainController(MainController mainController) {
