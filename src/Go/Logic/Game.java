@@ -51,28 +51,33 @@ public class Game
 		board.setVisited(cords);
 
 		boolean ans = isSurrounded(cords.up(), board, colour) &&
-					  isSurrounded(cords.down(), board, colour) &&
-					  isSurrounded(cords.left(), board, colour) &&
-				      isSurrounded(cords.right(), board, colour);
+				isSurrounded(cords.down(), board, colour) &&
+				isSurrounded(cords.left(), board, colour) &&
+				isSurrounded(cords.right(), board, colour);
 
 
 		board.leave(cords);
 		return ans;
 	}
 
-	private void kill(Cords cords, Board board, StoneColour colour)
+	private int kill(Cords cords, Board board, StoneColour colour)
 	{
 		if(!cords.areInside())
-			return;
+			return 0;
 		if(!board.getStone(cords).equals(colour))
-			return;
+			return 0;
 
 		board.setStone(cords, StoneColour.Empty);
 
-		kill(cords.up(), board, colour);
-		kill(cords.right(), board, colour);
-		kill(cords.left(), board, colour);
-		kill(cords.down(), board, colour);
+		int killed = 1;
+
+		killed += kill(cords.up(), board, colour);
+		killed += kill(cords.right(), board, colour);
+		killed += kill(cords.left(), board, colour);
+		killed += kill(cords.down(), board, colour);
+
+
+		return killed;
 	}
 
 	private boolean canBeKilled(Cords cords, Board board, StoneColour colour)
@@ -96,9 +101,9 @@ public class Game
 		}
 
 		boolean ans = canBeKilled(moveCords.up(), board, moveColour) ||
-					  canBeKilled(moveCords.left(), board, moveColour) ||
-					  canBeKilled(moveCords.right(), board, moveColour) ||
-					  canBeKilled(moveCords.down(), board, moveColour);
+				canBeKilled(moveCords.left(), board, moveColour) ||
+				canBeKilled(moveCords.right(), board, moveColour) ||
+				canBeKilled(moveCords.down(), board, moveColour);
 
 		board.setStone(moveCords, StoneColour.Empty);
 		return !ans;
@@ -115,8 +120,7 @@ public class Game
 		try
 		{
 			last = history.get(history.size() - 1);
-		}
-		catch(Exception e)
+		} catch(Exception e)
 		{
 			return false;
 		}
@@ -182,17 +186,19 @@ public class Game
 		Board board = state.getBoard();
 		Cords moveCords = board.new Cords(move.y, move.x);
 		StoneColour moveColour = move.player.getColour();
-
+		int killed = 0;
 		if(canBeKilled(moveCords.up(), board, moveColour))
-			kill(moveCords.up(), board, moveColour.other());
+			killed += kill(moveCords.up(), board, moveColour.other());
 		if(canBeKilled(moveCords.right(), board, moveColour))
-			kill(moveCords.right(), board, moveColour.other());
+			killed += kill(moveCords.right(), board, moveColour.other());
 		if(canBeKilled(moveCords.left(), board, moveColour))
-			kill(moveCords.left(), board, moveColour.other());
+			killed += kill(moveCords.left(), board, moveColour.other());
 		if(canBeKilled(moveCords.down(), board, moveColour))
-			kill(moveCords.down(), board, moveColour.other());
+			killed += kill(moveCords.down(), board, moveColour.other());
 
-		return new State(state.getPlayer(), board, state.getHistory());
+		int wc = (move.player.getColour().equals(StoneColour.Black) ? killed : 0) + state.getWhiteCaptured();
+		int bc = (move.player.getColour().equals(StoneColour.White) ? killed : 0) + state.getBlackCaptured();
+		return new State(state.getPlayer(), board, state.getHistory(), wc, bc);
 	}
 
 	public State addMove(State state, State.Move move)
@@ -202,7 +208,7 @@ public class Game
 		board.array[move.y][move.x].setColour(move.player.getColour());
 		ArrayList<Board> history = (ArrayList<Board>) state.getHistory().clone();
 		history.add(state.getBoard());
-		return new State(move.player, board, history);
+		return new State(move.player, board, history, state.getWhiteCaptured(), state.getBlackCaptured());
 	}
 
 

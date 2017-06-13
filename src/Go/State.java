@@ -10,12 +10,16 @@ public class State
 	Player player;
 	Board board;
 	ArrayList<Board> history;
+	int whiteCaptured = 0;
+	int blackCaptured = 0;
 
-	public State(Player p, Board b, ArrayList<Board> h)
+	public State(Player p, Board b, ArrayList<Board> h, int wc, int bc)
 	{
 		player = p;
 		board = b;
 		history = h;
+		whiteCaptured = wc;
+		blackCaptured = bc;
 	}
 
 	public Board getBoard()
@@ -31,6 +35,16 @@ public class State
 	public ArrayList<Board> getHistory()
 	{
 		return history;
+	}
+
+	public int getWhiteCaptured()
+	{
+		return whiteCaptured;
+	}
+
+	public int getBlackCaptured()
+	{
+		return blackCaptured;
 	}
 
 	public static class Move

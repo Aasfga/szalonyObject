@@ -36,7 +36,7 @@ public interface Match
 			players[1] = p[1 - x];
 			players[0].setColour(Black);
 			players[1].setColour(White);
-			state = new State(players[1], board, new ArrayList<>());
+			state = new State(players[1], board, new ArrayList<>(), 0, 0);
 		}
 
 		private Player getCurrentPlayer(Player p)
@@ -78,6 +78,7 @@ public interface Match
 				State.Move move = getCorrectMove(player);
 				state = game.addMove(state, move);
 				state = game.postMoveActions(state, move);
+				System.out.println("White captured: " + state.getWhiteCaptured() + "  ##  Black captured: " + state.getBlackCaptured());
 			}while(!game.isEnd(state));
 		}
 	}
