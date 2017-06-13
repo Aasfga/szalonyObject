@@ -14,6 +14,6 @@
       </ImageView>
       <Button layoutX="85.0" layoutY="453.0" mnemonicParsing="false" onAction="#newgame" prefHeight="31.0" prefWidth="104.0" text="Nowa Gra" />
       <Button layoutX="198.0" layoutY="453.0" mnemonicParsing="false" onAction="#loadgame" prefHeight="31.0" prefWidth="104.0" text="Wczytaj Grę" />
-      <Button layoutX="315.0" layoutY="453.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="104.0" text="Wyjście" />
+      <Button layoutX="311.0" layoutY="453.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="104.0" text="Wyjście" />
    </children>
 </Pane>

@@ -14,9 +14,19 @@ public class BackController {
 
     @FXML
     public void back() {
-        System.out.println("XD");
         mainController.setMenu();
     }
+
+    @FXML
+    public void save() {
+        System.out.println("XD");
+    }
+
+    @FXML
+    public void pas() {
+        System.out.println("XD");
+    }
+
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
