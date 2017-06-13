@@ -25,7 +25,7 @@ public class Board
 		for(int i = 0; i < size; i++)
 		{
 			for(int j = 0; j < size; j++)
-					array[i][j] = new Stone(b.array[i][j]);
+				array[i][j] = new Stone(b.array[i][j]);
 		}
 	}
 

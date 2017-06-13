@@ -7,6 +7,7 @@ import Go.State;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import static Go.IO.WindowViewInput.Go.movecolour;
 import static Go.IO.WindowViewInput.WindowView.judgeDidHisJob;
 
 public class Move implements Input
@@ -17,7 +18,10 @@ public class Move implements Input
 
 	public State.Move getMove(StoneColour colour)
 	{
-		//TODO teraz Twoja kolej :D
+		if ( colour == StoneColour.Black) {
+			movecolour = true;
+		}
+		else movecolour = false;
 		getMove = true;
 		judgeDidHisJob = true;
 		try

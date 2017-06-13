@@ -10,8 +10,8 @@ public class State
 	Player player;
 	Board board;
 	ArrayList<Board> history;
-	int whiteCaptured = 0;
-	int blackCaptured = 0;
+	public static int whiteCaptured = 0;
+	public static int blackCaptured = 0;
 
 	public State(Player p, Board b, ArrayList<Board> h, int wc, int bc)
 	{

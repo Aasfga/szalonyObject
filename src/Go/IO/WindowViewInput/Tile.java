@@ -24,10 +24,10 @@ public class Tile extends Rectangle {
         setOnMouseEntered(e->thingsToDoWhenEntered(x,y));
     }
 
-    static synchronized void thingsToDoWhenClicked(int x, int y) {
+    public static synchronized void thingsToDoWhenClicked(int x, int y) {
         array[lasty][lastx] = 0;
-        lastx = size-1;
-        lasty = size-1;
+        lastx = size;
+        lasty = size;
         array[y][x] = 0;
         setMove(x, y);
         while (!judgeDidHisJob) {
@@ -54,8 +54,8 @@ public class Tile extends Rectangle {
         }
         else if( ( x != lastx || y != lasty ) && array[y][x] != 0) {
             array[lasty][lastx] = 0;
-            lasty = size-1;
-            lastx = size-1;
+            lasty = size;
+            lastx = size;
             paneThatImOn.setGoPane();
         }
     }

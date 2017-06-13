@@ -9,7 +9,6 @@ import javafx.scene.shape.Ellipse;
 import java.io.File;
 import java.nio.file.Paths;
 
-import static Go.IO.WindowViewInput.Go.PANEL_SIZE;
 import static Go.IO.WindowViewInput.Go.TILE_SIZE;
 import static Go.IO.WindowViewInput.Tile.thingsToDoWhenEntered;
 
