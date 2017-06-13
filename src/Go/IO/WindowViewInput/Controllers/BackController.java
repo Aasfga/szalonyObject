@@ -4,7 +4,10 @@ package Go.IO.WindowViewInput.Controllers;
 import Go.Match;
 import Go.State;
 import javafx.fxml.FXML;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -49,8 +52,10 @@ public class BackController
 
 		FileOutputStream fileOut = null;
 		try
-		{
-			fileOut = new FileOutputStream("save.go");
+		{   FileChooser fileChooser1 = new FileChooser();
+            fileChooser1.setTitle("Save Image");
+            File file = fileChooser1.showSaveDialog(new Stage());
+			fileOut = new FileOutputStream(file);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(container);
 			out.close();
