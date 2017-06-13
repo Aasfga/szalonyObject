@@ -15,8 +15,8 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.io.IOException;
 
-import static Go.State.blackCaptured;
-import static Go.State.whiteCaptured;
+import static Go.IO.WindowViewInput.Go.numberblack;
+import static Go.IO.WindowViewInput.Go.numberwhite;
 
 public class MenuController {
 
@@ -59,7 +59,7 @@ public class MenuController {
         scoreBlack.setStrokeWidth(3);
         scoreBlack.setStroke(Color.WHITE);
 
-        Text pointsB = new Text(Integer.toString(blackCaptured));
+        Text pointsB = new Text(Integer.toString(numberblack));
         pointsB.setFill(Color.WHITE);
         pointsB.relocate(87,45);
         pointsB.setFont(Font.font(null, FontWeight.BOLD, 45));
@@ -76,7 +76,7 @@ public class MenuController {
         scoreWhite.setStrokeWidth(3);
         scoreWhite.setStroke(Color.BLACK);
 
-        Text pointsW = new Text(Integer.toString(whiteCaptured));
+        Text pointsW = new Text(Integer.toString(numberwhite));
         pointsW.relocate(87,45);
         pointsW.setFont(Font.font(null, FontWeight.BOLD, 45));
         panelWhite.getChildren().add(scoreWhite);

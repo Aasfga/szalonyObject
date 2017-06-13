@@ -5,13 +5,16 @@ import Go.Player;
 
 import java.util.ArrayList;
 
+import static Go.IO.WindowViewInput.Go.numberblack;
+import static Go.IO.WindowViewInput.Go.numberwhite;
+
 public class State
 {
 	Player player;
 	Board board;
 	ArrayList<Board> history;
-	public static int whiteCaptured = 0;
-	public static int blackCaptured = 0;
+	int whiteCaptured = 0;
+	int blackCaptured = 0;
 
 	public State(Player p, Board b, ArrayList<Board> h, int wc, int bc)
 	{
@@ -20,6 +23,8 @@ public class State
 		history = h;
 		whiteCaptured = wc;
 		blackCaptured = bc;
+		numberwhite = wc;
+		numberblack = bc;
 	}
 
 	public Board getBoard()

@@ -19,6 +19,8 @@ public class Go extends Pane {
     private static Group backlight = new Group();
     private static Group scoreGroup = new Group();
     private static boolean start = false;
+    public static int numberwhite = 0;
+    public static int numberblack = 0;
 
     public Go() {
         relocate(75,70);
