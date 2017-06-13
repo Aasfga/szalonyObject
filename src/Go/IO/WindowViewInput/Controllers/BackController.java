@@ -26,7 +26,7 @@ public class BackController {
 
     @FXML
     public void pas() {
-        thingsToDoWhenClicked(-1,1);
+        thingsToDoWhenClicked(-1,-1);
     }
 
 

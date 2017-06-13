@@ -25,21 +25,23 @@ public class Tile extends Rectangle {
     }
 
     public static synchronized void thingsToDoWhenClicked(int x, int y) {
-        array[lasty][lastx] = 0;
-        lastx = size;
-        lasty = size;
-        array[y][x] = 0;
-        setMove(x, y);
-        while (!judgeDidHisJob) {
-            try
-            {
-                TimeUnit.MILLISECONDS.sleep(100);
-            } catch(InterruptedException e)
-            {}
-        }
-        judgeDidHisJob = false;
-        paneThatImOn.setGoPane();
-        flag =  !flag;
+            if ( x!= -1 ) {
+                array[lasty][lastx] = 0;
+                lastx = size;
+                lasty = size;
+                array[y][x] = 0;
+            }
+            setMove(x, y);
+            while (!judgeDidHisJob) {
+                try
+                {
+                    TimeUnit.MILLISECONDS.sleep(100);
+                } catch(InterruptedException e)
+                {}
+            }
+            judgeDidHisJob = false;
+            paneThatImOn.setGoPane();
+            flag =  !flag;
     }
 
     static void thingsToDoWhenEntered(int x, int y) {
