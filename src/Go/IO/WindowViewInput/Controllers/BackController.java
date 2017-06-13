@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 
 import static Go.IO.WindowViewInput.Go.scoreblack;
 import static Go.IO.WindowViewInput.Go.scorewhite;
+import static Go.IO.WindowViewInput.Move.setMove;
 import static Go.IO.WindowViewInput.Tile.thingsToDoWhenClicked;
 import static Go.IO.WindowViewInput.WindowView.array;
 import static Go.IO.WindowViewInput.WindowView.finalSize;
@@ -27,6 +28,7 @@ public class BackController {
         }
         scorewhite = 0;
         scoreblack = 0;
+        setMove(-2, -2);
     }
 
     @FXML

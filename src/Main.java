@@ -9,12 +9,7 @@ public class Main
 {
 
 	public static void main(String[] args) {
-		Player f = new Player("Dominik", new Move());
-		Player s = new Player("kinimoD", new Move());
-		Board board = Game.get().getInitBoard(13);
-		WindowView view = new WindowView();
 		WindowView.startingView(13);
-		Match match = new  Match.LocalMatch(view, board, f, s);
-		match.startGame();
+
 	}
 }
