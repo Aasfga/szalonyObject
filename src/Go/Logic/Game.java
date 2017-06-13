@@ -145,7 +145,8 @@ public class Game
 		StoneColour colour = move.player.getColour();
 		Board board = state.getBoard();
 
-
+		if(move.x == move.y && move.x == -1)
+			return Result.Success;
 		if(!board.array[y][x].colour.equals(StoneColour.Empty))
 			return Result.WrongMove;
 		if(state.getPlayer() == move.player)
@@ -183,6 +184,9 @@ public class Game
 
 	public State postMoveActions(State state, State.Move move)
 	{
+		if(move.x == -1)
+			return state;
+
 		Board board = state.getBoard();
 		Cords moveCords = board.new Cords(move.y, move.x);
 		StoneColour moveColour = move.player.getColour();
@@ -205,7 +209,8 @@ public class Game
 	{
 
 		Board board = new Board(state.getBoard());
-		board.array[move.y][move.x].setColour(move.player.getColour());
+		if(move.x != -1)
+			board.array[move.y][move.x].setColour(move.player.getColour());
 		ArrayList<Board> history = (ArrayList<Board>) state.getHistory().clone();
 		history.add(state.getBoard());
 		return new State(move.player, board, history, state.getWhiteCaptured(), state.getBlackCaptured());
