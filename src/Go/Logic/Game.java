@@ -148,6 +148,8 @@ public class Game
 		StoneColour colour = move.player.getColour();
 		Board board = state.getBoard();
 
+		if(move.x == -2)
+			return Result.Success;
 		if(move.x == move.y && move.x == -1)
 			return Result.Success;
 		if(!board.array[y][x].colour.equals(StoneColour.Empty))
@@ -187,7 +189,7 @@ public class Game
 
 	public State postMoveActions(State state, State.Move move)
 	{
-		if(move.x == -1)
+		if(move.x == -1 || move.x == -2)
 			return state;
 
 		Board board = state.getBoard();
@@ -212,7 +214,7 @@ public class Game
 	{
 
 		Board board = new Board(state.getBoard());
-		if(move.x != -1)
+		if(move.x != -1 && move.x != -2)
 			board.array[move.y][move.x].setColour(move.player.getColour());
 		ArrayList<Board> history = (ArrayList<Board>) state.getHistory().clone();
 		history.add(state.getBoard());
