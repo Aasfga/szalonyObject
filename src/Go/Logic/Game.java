@@ -27,8 +27,11 @@ public class Game
 		return new Board(size);
 	}
 
-	public boolean isEnd(State state)
+	public boolean isEnd(State state, State.Move move)
 	{
+		if(move.x == -2)
+			return true;
+
 		return false;
 	}
 

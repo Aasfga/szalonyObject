@@ -71,15 +71,17 @@ public interface Match
 		@Override
 		public void run()
 		{
+			State.Move move;
+
 			do
 			{
 				view.setCurrentView(state);
 				Player player = getCurrentPlayer(state.player);
-				State.Move move = getCorrectMove(player);
+				move = getCorrectMove(player);
 				state = game.addMove(state, move);
 				state = game.postMoveActions(state, move);
 				System.out.println("White captured: " + state.getWhiteCaptured() + "  ##  Black captured: " + state.getBlackCaptured());
-			}while(!game.isEnd(state));
+			}while(!game.isEnd(state, move));
 		}
 	}
 }
