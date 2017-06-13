@@ -19,6 +19,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import Go.State;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,7 +54,6 @@ public class MenuController {
         root.setPrefSize(1000, 800);
         Pane go = new Go();
 
-//
         File file = new File("src/Go/IO/WindowViewInput/images/tło.jpg");
         Image img = new Image(file.toURI().toString());
         ImagePattern image = new ImagePattern(img);
@@ -118,7 +120,10 @@ public class MenuController {
         State.Container container;
         try
         {
-            FileInputStream fileIn = new FileInputStream("save.go");
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Open File");
+            File file = chooser.showOpenDialog(new Stage());
+            FileInputStream fileIn = new FileInputStream(file);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             container = (State.Container) in.readObject();
             in.close();
