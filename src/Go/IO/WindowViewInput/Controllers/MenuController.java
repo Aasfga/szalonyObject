@@ -30,6 +30,8 @@ import java.io.ObjectInputStream;
 import static Go.IO.WindowViewInput.Go.scoreblack;
 import static Go.IO.WindowViewInput.Go.scorewhite;
 
+import Server.Client;
+
 public class MenuController {
 
     private MainController mainController;
@@ -147,7 +149,16 @@ public class MenuController {
     }
 
     public void multiplayer(){
-        //TODO
+        Client c = new Client();
+        String uuid = c.login();
+
+        /*Player f = new Player(uuid, new Move());
+        Player s = new Player("opponent", new Move());
+        WindowView view = new WindowView();
+        Board board = Game.get().getInitBoard(13);
+        match = new  Match.LocalMatch(view, board, f, s);
+        match.startGame();
+        refresh();*/
     }
 
     public void setMainController(MainController mainController) {
