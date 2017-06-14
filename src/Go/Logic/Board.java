@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Board implements Serializable
 {
 	final int size;
-	Stone array[][];
+	public Stone array[][];
 	Board(int s)
 	{
 		size = s;

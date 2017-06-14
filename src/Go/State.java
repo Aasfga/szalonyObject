@@ -1,6 +1,7 @@
 package Go;
 
 import Go.Logic.Board;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -62,6 +63,10 @@ public class State implements Serializable
 		{
 			this.y = y;
 			this.x = x;
+		}
+
+		public String toJSON() {
+			return (new Gson()).toJson(this);
 		}
 	}
 

@@ -153,7 +153,7 @@ public class MenuController {
         c.entrygame(uuid);
         while(!c.prompt(uuid)) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             }
             catch(Exception e) {}
         }
@@ -162,15 +162,15 @@ public class MenuController {
         Player s = new Player("opponent", new Move()); // Move to RemoteMove
         WindowView view = new WindowView();
         Board board = Game.get().getInitBoard(13);
-        if( c.getColor().equals("white") ) {
+        if( c.getColor().equals("White") ) {
             f.setColour(StoneColour.White);
             s.setColour(StoneColour.Black);
-            match = new  Match.RemoteMatch(c, view, board, f, s);
+            match = new  Match.RemoteMatch(c, view, board, f, f, s);
         }
         else {
             f.setColour(StoneColour.Black);
             s.setColour(StoneColour.White);
-            match = new  Match.RemoteMatch(c, view, board, s, f);
+            match = new  Match.RemoteMatch(c, view, board, f, s, f);
         }
         match.startGame();
         refresh();
