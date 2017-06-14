@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static Go.IO.WindowViewInput.Go.scoreblack;
 import static Go.IO.WindowViewInput.Go.scorewhite;

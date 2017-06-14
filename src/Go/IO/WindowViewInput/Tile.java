@@ -10,9 +10,6 @@ import static Go.IO.WindowViewInput.Go.flag;
 import static Go.IO.WindowViewInput.Move.setMove;
 import static Go.IO.WindowViewInput.WindowView.*;
 
-import javafx.stage.WindowEvent;
-import javafx.stage.WindowEvent.*;
-
 public class Tile extends Rectangle {
 
     public static Go paneThatImOn;
@@ -30,7 +27,7 @@ public class Tile extends Rectangle {
         relocate(x * Go.TILE_SIZE, y * Go.TILE_SIZE);
         setFill(Color.valueOf("#ffad33"));
         setOnMouseClicked(e -> thingsToDoWhenClicked(x, y)); // Must check what if doubleclicked
-        setOnMouseEntered(e->thingsToDoWhenEntered(x,y));
+        setOnMouseEntered(e -> thingsToDoWhenEntered(x,y));
     }
 
     public static synchronized void thingsToDoWhenClicked(int x, int y) {

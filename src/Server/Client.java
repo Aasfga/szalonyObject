@@ -7,7 +7,7 @@ public class Client {
     private Remote r;
 
     public Client() {
-        this.r = new Remote("http://localhost:6060");//"http://realgo.herokuapp.com");
+        this.r = new Remote("http://realgo.herokuapp.com");//"http://localhost:6060");
     }
 
     public String login() {
