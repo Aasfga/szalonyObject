@@ -24,8 +24,8 @@ public class State implements Serializable
 		history = h;
 		whiteCaptured = wc;
 		blackCaptured = bc;
-		scorewhite = wc;
-		scoreblack = bc;
+		scorewhite = bc;
+		scoreblack = wc;
 	}
 
 	public Board getBoard()

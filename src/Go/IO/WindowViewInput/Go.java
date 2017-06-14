@@ -21,6 +21,7 @@ public class Go extends Pane {
     private static boolean start = false;
     public static int scorewhite = 0;
     public static int scoreblack = 0;
+    public static boolean ended = false;
 
     public Go() {
         relocate(75,70);

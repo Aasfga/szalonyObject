@@ -19,6 +19,10 @@ import static Go.IO.WindowViewInput.Go.movecolour;
 import static Go.IO.WindowViewInput.Go.scoreblack;
 import static Go.IO.WindowViewInput.Go.scorewhite;
 
+import static Go.IO.WindowViewInput.WindowView.judgeDidHisJob;
+
+import static Go.IO.WindowViewInput.Go.ended;
+
 public interface Match
 {
 	void startGame();
@@ -99,8 +103,6 @@ public interface Match
             State res = getState();
             res.whiteCaptured = s.scoreblack;
             res.blackCaptured = s.scorewhite;
-            scoreblack = s.scoreblack;
-            scorewhite = s.scorewhite;
             res.board = b;
             res.history.add(b);
             if( s.player.equals("Black") ) {
@@ -119,15 +121,17 @@ public interface Match
             do
             {
                 resolveState();
+                //System.out.println("White captured: " + state.getWhiteCaptured() + "  ##  Black captured: " + state.getBlackCaptured());
+                scoreblack = state.getWhiteCaptured();
+                scorewhite = state.getBlackCaptured();
                 view.setCurrentView(state);
                 Player player = getCurrentPlayer(state.player);
                 if( player == localPlayer ) {
                     move = getCorrectMove(player);
                     c.sendMove(move);
                 }
-                System.out.println("White captured: " + state.getWhiteCaptured() + "  ##  Black captured: " + state.getBlackCaptured());
                 try {Thread.sleep(100); } catch (Exception e) {}
-            }while(true);//while(!game.isEnd(state, move));
+            } while(!ended);
 		}
 	}
 

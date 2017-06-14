@@ -22,6 +22,8 @@ import static Go.IO.WindowViewInput.WindowView.finalSize;
 /**
  * Created by Kruti on 13.06.2017.
  */
+
+import static Go.IO.WindowViewInput.Go.ended;
 public class BackController
 {
 
@@ -43,6 +45,7 @@ public class BackController
 		scorewhite = 0;
 		scoreblack = 0;
 		setMove(-2, -2);
+		ended = true;
 	}
 
 	@FXML

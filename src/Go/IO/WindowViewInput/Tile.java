@@ -10,6 +10,9 @@ import static Go.IO.WindowViewInput.Go.flag;
 import static Go.IO.WindowViewInput.Move.setMove;
 import static Go.IO.WindowViewInput.WindowView.*;
 
+import javafx.stage.WindowEvent;
+import javafx.stage.WindowEvent.*;
+
 public class Tile extends Rectangle {
 
     public static Go paneThatImOn;
@@ -67,6 +70,7 @@ public class Tile extends Rectangle {
             lastx = finalSize;
             paneThatImOn.setGoPane();
         }
+        menu.refresh();
     }
 
 }

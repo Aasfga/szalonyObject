@@ -67,7 +67,7 @@ public class Remote {
             CloseableHttpResponse response = GET(uri);
             HttpEntity entity = response.getEntity();
             String responseString = EntityUtils.toString(entity, "UTF-8");
-            System.out.println(responseString);
+            //System.out.println(responseString);
             LoginResponse received = (new Gson()).fromJson(responseString, LoginResponse.class);
             result = received.name;
             this.uuid = received.name;
@@ -213,7 +213,7 @@ public class Remote {
             HttpEntity entity = response.getEntity();
             String responseString = EntityUtils.toString(entity, "UTF-8");
 
-            System.out.println(responseString);
+            //System.out.println(responseString);
             response.close();
         }
         catch( IOException e ) {
